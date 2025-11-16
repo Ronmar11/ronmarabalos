@@ -1,0 +1,381 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    font-family: 'Poppins';
+    scroll-behavior: smooth;
+}
+:root{
+    --prime-color: #2FB297;
+    --black-color: #000;
+    --white-color: #fff;
+    --gray-color: #35404E;
+    --transition: .3s;
+    --transition2: .6s;
+}
+body{
+    overflow-x: hidden;
+    background: var(--white-color);
+    color: var(--black-color);
+}
+.home{
+    background-color: var(--white-color);
+    background-position: top center;
+    background-size: 100%;
+    height: 100%;
+    width: 100%;
+}
+nav{
+    width: 100%;
+    height: 50PX;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 100;
+    margin-right: min(5rem, 8%);
+    margin-top: min(1.7rem, 8%);
+    margin-bottom: min(5rem, 8%);
+   
+}
+.nav-container {
+  height: 50px;
+  width: 44rem;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  padding-left: 4.7rem;
+  padding-right: 4.7rem;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 #0d2626;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 60Q; 
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.logo a{
+    font-size: 1.3rem;
+    color: var(--black-color);
+    font-weight: 600;
+    cursor:text;
+}
+.menu{
+    padding-left: 1%;
+    padding-right: 1%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.menu li a{
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--black-color);
+    transition: var(--transition2);
+}
+.menu li a:hover{
+    opacity: .5;
+}
+.bars{
+    display: none;
+}
+.switch {
+  font-size: 12px;
+  position: relative;
+  display: inline-block;
+  width: 3.5em;
+  height: 2em;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  --background: #757e7e;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--background);
+  transition: .5s;
+  border-radius: 30px;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 1.4em;
+  width: 1.4em;
+  border-radius: 50%;
+  left: 10%;
+  bottom: 15%;
+  box-shadow: inset 15px -4px 0px 15px #fff000;
+  background: var(--background);
+  transition: .5s;
+}
+input:checked + .slider {
+  background-color: #522ba7;  
+}
+input:checked + .slider:before {
+  transform: translateX(100%);
+  box-shadow: inset 8px -4px 0px 0px #fff000;
+}
+.Profile{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7.5rem 5rem;
+  gap: 2rem;
+}
+.img{
+  background-image: url(Day-Photoroom.png);
+  height: 30rem;
+  width: 37rem;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  display: flex;
+}
+.nverif h1{
+  font-size: clamp(1rem, 8vw, 3rem);
+  padding-right: 15px;
+}
+.nverif{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.h-4 {
+  height: 4rem;
+}
+.w-4 {
+  width: 4rem;
+}
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+.social{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+.facebook, .github{
+  font-size: 30px;
+  color: #090909;
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 0.5em;
+  background: #e8e8e8;
+  cursor: pointer;
+  border: 1px solid #e8e8e8;
+  transition: all 0.3s;
+  box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+}
+.facebook:active, .github:active{
+  color: #666;
+  box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
+}
+.facebook{margin-right: 10px;}
+.github{margin-left: 10px;}
+
+.about {
+  margin-left: min(5rem, 8%);
+  margin-right: min(5rem, 8%);
+  margin-bottom: min(5rem, 8%);
+
+}
+.about h1{
+  margin-bottom: 20px;
+}
+.about1{
+  width: 100%;
+  height: 100%;
+  padding-top: min(3rem, 10%);
+  padding-bottom: min(2rem, 10%);
+  padding-left: min(3rem, 8%);
+  padding-right: min(3rem, 8%);
+  border-radius: 50px;
+  background: #e0e0e0;
+  border: 1px solid #e8e8e8;
+}
+.abt{
+    display: flex;
+    justify-content: space-between;
+   
+}
+.about1 p{
+  padding-bottom: 30px;
+  justify-content: space-between;
+  font-size: 25px;
+}
+.about1-div{
+  padding-left: 1.8rem;
+  width: 45rem;
+}
+.about2-div{
+  border-radius: 50px;
+  background: #e0e0e0;
+  border: 1px solid #e8e8e8;
+}
+.tech-stack{
+  margin-left: min(5rem, 8%);
+  margin-right: min(5rem, 8%);
+  margin-bottom: min(5rem, 8%);
+}
+.tech-stack h1{
+  margin-bottom: 20px;
+}
+.stack{
+  width: 100%;
+  height: 100%;
+  display: grid;
+  justify-content: space-between;
+  border-radius: 50px;
+  background: #e0e0e0;
+  border: 1px solid #e8e8e8;
+  padding-top: min(3rem, 10%);
+  padding-bottom: min(2rem, 10%);
+  padding-left: min(3rem, 8%);
+  padding-right: min(3rem, 8%);
+}
+.stack div{
+  padding-left: 1.8rem;
+}
+
+/* TECT TRACK LOGO  */
+
+  .mysql {
+  display: flex;
+  font-size: 20px;
+  font-weight: 500;
+  color: #090909;
+  padding: 10px;
+  border-radius: 0.5em;
+  background: #e8e8e8;
+  cursor: pointer;
+  border: 1px solid #e8e8e8;
+  transition: all 0.3s;
+  box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+  } 
+  .mysql-logo{
+    font-size: 25px;
+    padding-left: min(10px, 8%);
+  }
+
+
+@media (max-width: 1024px) {
+  .Profile {
+    flex-direction: column;
+    padding: 6rem 2rem;
+  }
+  .img {
+    width: 28rem;
+    height: 22rem;
+    background-size: contain;
+  }
+  .name {
+    font-size: 40px;
+  }
+  .simpletext {
+    font-size: 20px;
+  }
+  .menu {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  nav {
+    justify-content: space-between;
+    padding: 0 1rem;
+  }
+  .menu {
+    display: none;
+    flex-direction: column;
+    background: var(--white-color);
+    position: absolute;
+    top: 100px;
+    right: 0;
+    width: 100%;
+    text-align: center;
+    gap: 1.5rem;
+    padding: 1rem 0;
+  }
+  .menu.active {
+    display: flex;
+  }
+  .bars {
+    display: block;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  .Profile {
+    flex-direction: column;
+    padding: 6rem 2rem;
+  }
+  .img {
+    width: 100%;
+    height: 20rem;
+    background-size: contain;
+  }
+  .name {
+    font-size: 32px;
+  }
+  .simpletext {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo a {
+    font-size: 1.1rem;
+  }
+  .name {
+    font-size: 26px;
+  }
+  .simpletext {
+    font-size: 14px;
+  }
+  .img {
+    height: 15rem;
+  }
+  .facebook, .github {
+    font-size: 24px;
+  }
+}
+
+/* DARK MODE */
+body.dark-mode {
+  background: var(--black-color);
+  color: #f5f5f5;
+}
+body.dark-mode .home {
+  background:var(--black-color);
+}
+body.dark-mode .logo a,
+body.dark-mode .menu li a {
+  color: #f5f5f5;
+}
+body.dark-mode .facebook,
+body.dark-mode .github {
+  background: #222;
+  color: #f5f5f5;
+  box-shadow: 6px 6px 12px #111, -6px -6px 12px #333;
+}
+body.dark-mode .facebook:active,
+body.dark-mode .github:active {
+  box-shadow: inset 4px 4px 12px #111, inset -4px -4px 12px #333;
+}
+body.dark-mode .about1, body.darkmode .stack{
+  background: #222;
+  color: #f5f5f5;
+  box-shadow: 6px 6px 12px #111, -6px -6px 12px #333;
+}
+
+
