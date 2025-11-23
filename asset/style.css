@@ -183,7 +183,7 @@ input:checked + .slider:before {
   padding-right: 15px;
 }
 .name p{
-  font-size: clamp(15px, 20px, 30px);
+  font-size: clamp(15px, 1.4vw, 3rem);
   text-align: center;
 }
 .nverif{
@@ -255,7 +255,6 @@ input:checked + .slider:before {
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin-bottom: 48px;
 }
 .title1 h1{
   margin-bottom: min(3rem, 8%);
