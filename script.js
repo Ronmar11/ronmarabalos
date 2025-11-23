@@ -1,9 +1,12 @@
 const toggle = document.getElementById("darkToggle");
 const facebook = document.getElementById('facebook-link');
 const github = document.getElementById('github-link');
+const portfolio = document.getElementById('porfolio-link');
 const meal = document.getElementById('mealmaster-link');
 const bms = document.getElementById('bms-link');
+const bmsyt = document.getElementById('bms-yt-link');
 const pra = document.getElementById('pra-link');
+const prayt = document.getElementById('pra-yt-link');
 const linkedid = document.getElementById('linkedid-link');
 const github2 = document.getElementById('github-link2');
 const instagram = document.getElementById('instagram-link');
@@ -31,6 +34,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
     }
+    if(portfolio){
+      portfolio.addEventListener('click', function(){
+        const url = this.getAttribute('data-url');
+        if(url){
+          window.open(url);
+        }
+      });
+    }
     if(meal){
       meal.addEventListener('click', function(){
         const url = this.getAttribute('data-url');
@@ -49,10 +60,27 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
     }
+    if(bmsyt){
+      bmsyt.addEventListener('click', function(){
+        const url = this.getAttribute('data-url');
+        if(url){
+          window.open(url);
+        }
+      });
+      }
+    
     if(pra){
       pra.addEventListener('click', function(){
         const url = this.getAttribute('data-url');
         if(pra){
+          window.open(url);
+        }
+      });
+    }
+    if(prayt){
+      prayt.addEventListener('click', function(){
+        const url = this.getAttribute('data-url');
+        if(url){
           window.open(url);
         }
       });

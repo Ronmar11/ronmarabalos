@@ -255,7 +255,6 @@ input:checked + .slider:before {
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin-bottom: 48px;
 }
 .title1 h1{
   margin-bottom: min(3rem, 8%);
@@ -275,7 +274,10 @@ input:checked + .slider:before {
   margin-top: min(2.5rem, 8%);
   margin-left: min(5rem, 3%);
   margin-right: min(5rem, 3%);
-  padding-bottom: min(5rem, 8%);
+  padding-top: min(3rem, 8%);
+  padding-bottom: min(7rem, 10%);
+  padding-left: min(3rem, 5%);
+  padding-right: min(3rem, 5%);
 }
 .tech-stack::before {
   content: "";
@@ -320,10 +322,10 @@ gap: 10px;
 .stack{
   width: 100%;
   height: 100%;
-  padding-top: min(3rem, 10%);
-  padding-bottom: min(2rem, 10%);
-  padding-left: min(3rem, 5%);
-  padding-right: min(3rem, 5%);
+}
+.stack{
+  opacity: .6;
+  transition: var(--transition2);
 }
 .stach-quote, .project-quote, .contact-qoute{
   display: flex;
@@ -343,6 +345,15 @@ gap: 10px;
   font-size: clamp(1.3rem, 2.3vw, 3rem);
   font-weight: 600; 
   text-align: center;
+}
+.project-quote{
+  opacity: .6;
+  transition: var(--transition2);
+}
+.project:hover{
+  .project-quote{
+    opacity: 1;
+  }
 }
 .sta{ 
   display: flex;
@@ -485,6 +496,7 @@ gap: 10px;
   border-radius: 60Q; 
   border: 1px solid rgba(255, 255, 255, 0.18);
   transition: 300ms;
+  opacity: .3;
 }
 .proj1{
   grid-column: span 2;
@@ -574,6 +586,7 @@ gap: 10px;
   border-radius: 0.5em;
   cursor: pointer;
   transition: all 0.3s;
+  color: gray;
 }
 .proj-logo-divider-size h4{
   transition: all 0.3s;
@@ -683,12 +696,17 @@ footer{
   scale: 105%;
 }
 .project-divider:hover{
-scale: 105%;
-filter: brightness(1.1);
+  opacity: 1;
+  scale: 105%;
+  filter: brightness(1.1);
 }
-
-.proj-logo-divider-size h4:hover{
-  opacity: .5;
+.proj-logo-divider-size:hover{
+  color: black;
+}
+.tech-stack:hover{
+  .stack{
+  opacity: 1;
+}
 }
 .contact-icon:hover , .contact-email:hover{
   color: #000;
@@ -793,6 +811,9 @@ body.dark-mode .about{
 }
 body.dark-mode .stack{
   color: #f5f5f5;
+}
+body.dark-mode .proj-logo-divider-size:hover{
+  color: white;
 }
 body.dark-mode .button1 span:last-child {
  color: rgb(255, 255, 255);
