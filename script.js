@@ -10,6 +10,7 @@ const prayt = document.getElementById('pra-yt-link');
 const linkedid = document.getElementById('linkedid-link');
 const github2 = document.getElementById('github-link2');
 const instagram = document.getElementById('instagram-link');
+const email = document.getElementById('email-link');
 
 
 toggle.addEventListener("change", () => {
@@ -106,6 +107,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const url = this.getAttribute('data-url');
         if(instagram){
           window.open(url);
+        }
+      });
+    }
+    if(email){
+      email.addEventListener('click', function(){
+        const url = this.getAttribute('data-url');
+        if(email){
+           window.open(`mailto:${url}`)
         }
       });
     }
