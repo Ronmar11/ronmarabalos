@@ -180,7 +180,7 @@ input:checked + .slider:before {
   background-size: contain;
   background-repeat: no-repeat;
   display: flex;
-  transition: 300ms;
+  transition: var(--transition2);
   border-radius: 60Q; 
 }
 .nverif h1{
@@ -258,7 +258,7 @@ input:checked + .slider:before {
 }
 .title1{
   display: flex;
-  justify-self: center;
+  justify-content: center;
   gap: 10px;
   margin-bottom: 48px;
 }
@@ -592,7 +592,7 @@ gap: 10px;
 }
 .contact-alignment{
 display: flex;
-justify-items: center;
+justify-content: center;
 justify-self: center;
 gap: 50px;
 margin-top: min(20px, 8%);
