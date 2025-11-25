@@ -119,3 +119,11 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".menu li a, .img, .button1, .project-divider, .proj-logo-divider-size, .tech-stack, .contact-icon, .contact-email, .button").forEach(el => {
+    el.addEventListener("click", function () {
+      this.classList.toggle("active");
+    });
+  });
+});

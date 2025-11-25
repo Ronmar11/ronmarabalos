@@ -670,46 +670,91 @@ footer{
   text-align: center;
   font-size: .875rem;
 }
-.menu li a:hover, .bars-div:hover{
+.menu li a:hover{
     opacity: .5;
 }
-.img:hover , img:active{
+.img:hover{
   background-image: url(Day.jpg);
   scale: 102%;
 }
-.button1:hover , .button1:active{
+.button1:hover{
   scale: 105%;
 }
-.button1:hover:after , .button1:active:after {
+.button1:hover:after {
  transform-origin: bottom center;
  transform: skewY(9.3deg) scaleY(2);
 }
 
-.button1:hover span:last-child, .button1:active span:last-child{
+.button1:hover span:last-child{
  transform: translateX(-50%) translateY(-50%);
  opacity: 1;
  transition: all 900ms cubic-bezier(0.48, 0, 0.12, 1);
 }
-.project-divider:hover, .project-divider:active{
+.project-divider:hover{
   opacity: 1;
   scale: 105%;
   filter: brightness(1.1);
 }
-.proj-logo-divider-size:hover, .proj-logo-divider-size:active {
+.proj-logo-divider-size:hover{
   color: black;
 }
-.tech-stack:hover, .tech-stack:active{
+.tech-stack:hover{
   .stack{
   opacity: 1;
 }
 }
-.contact-icon:hover , .contact-email:hover , .contact-icon:active , .contact-email:active{
+.contact-icon:hover , .contact-email:hover{
   color: #000;
 }
-.button:hover .blob1, .button:active .blob1{
+.button:hover .blob1{
   width: 100%;
   background:    #ffb53f;
 }
+.menu li a.active {
+    opacity: .5;
+}
+
+.img.active {
+  background-image: url(Day.jpg);
+  scale: 102%;
+}
+
+.button1.active {
+  scale: 105%;
+}
+
+.button1.active:after {
+ transform-origin: bottom center;
+ transform: skewY(9.3deg) scaleY(2);
+}
+
+.button1.active span:last-child {
+ transform: translateX(-50%) translateY(-50%);
+ opacity: 1;
+ transition: all 900ms cubic-bezier(0.48, 0, 0.12, 1);
+}
+
+.project-divider.active {
+  opacity: 1;
+  scale: 105%;
+  filter: brightness(1.1);
+  filter: var(--prime-color);
+}
+
+.tech-stack.active .stack {
+  opacity: 1;
+}
+
+.contact-icon.active,
+.contact-email.active {
+  color: #000;
+}
+
+.button.active .blob1 {
+  width: 100%;
+  background: #ffb53f;
+}
+
 @media (max-width: 1034px) {
   .Profile {
     flex-direction: column;
@@ -860,8 +905,8 @@ footer{
   font-size: 13px;
   padding-right: 8px;
   }
-    .nverif h1{
-  font-size: 28px;
+  .nverif h1{
+  font-size: 30px;
   padding-right: 15px;
   }
 }
@@ -880,7 +925,7 @@ body.dark-mode .img-div{
   border: 1px solid rgba(76, 76, 76, 0.18);
   mask-image: radial-gradient(at top, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%);
 }
-body.dark-mode .img:hover, body.dark-mode .img:active{
+body.dark-mode .img:hover{
   background-image: url(night-click.png);
   scale: 102%;
 }
@@ -934,11 +979,11 @@ body.dark-mode .portfolio-img{
 body.dark-mode .portfolio-img2{
   background-image: url(Portfolio2-night.png);
 }
-body.dark-mode .contact-icon:hover , body.dark-mode .contact-icon:active{
+body.dark-mode .contact-icon:hover{
   font-size: 25px;
   color: #3fe9ff;
 }
-body.dark-mode .contact-item3:hover , body.dark-mode .contact-item3:active{
+body.dark-mode .contact-item3:hover {
   color: rgb(255, 255, 255);
 }
 body.dark-mode .blob1{
@@ -949,7 +994,7 @@ body.dark-mode .blob1{
     transparent
   );
 }
-body.dark-mode .button:hover .blob1, body.dark-mode .button:active .blob1{
+body.dark-mode .button:hover .blob1{
   width: 100%;
   background:    #3fe9ff;
 }
