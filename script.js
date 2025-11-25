@@ -1,4 +1,5 @@
-const toggle = document.getElementById("darkToggle");
+const toggle = document.getElementById('darkToggle');
+const stored = localStorage.getItem('dark-mode');
 const facebook = document.getElementById('facebook-link');
 const github = document.getElementById('github-link');
 const portfolio = document.getElementById('porfolio-link');
@@ -13,9 +14,29 @@ const instagram = document.getElementById('instagram-link');
 const email = document.getElementById('email-link');
 
 
-toggle.addEventListener("change", () => {
-  document.body.classList.toggle("dark-mode", toggle.checked);
-});
+
+(function setupDarkToggle(){
+
+  function init(){
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initialDark = stored === '1' ? true : (stored === '0' ? false : prefersDark);
+    if (initialDark) document.body.classList.add('dark-mode');
+    if (toggle) toggle.checked = initialDark;
+
+    if (!toggle) return;
+    toggle.addEventListener('change', () => {
+      const on = !!toggle.checked;
+      document.body.classList.toggle('dark-mode', on);
+      localStorage.setItem('dark-mode', on ? '1' : '0');
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
 
 document.addEventListener('DOMContentLoaded', function() {
     if (facebook) {

@@ -47,13 +47,39 @@ nav{
   align-items: center;
   padding-left: 4.7rem;
   padding-right: 4.7rem;
-  gap: 10px;
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 32px 0 #0d2626;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  gap: 10px;  
   border-radius: 60Q; 
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(3px) saturate(180%);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow:
+    inset 0 0 25px rgba(255, 255, 255, 0.6),
+    0 20px 40px rgba(0, 0, 0, 0.25);
+  transform: translateY(0);
+  transition: 0.4s ease;
+  position: relative;
+}
+.nav-container::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50px;
+  backdrop-filter: blur(30px);
+  mask: radial-gradient(circle at 20% 20%, transparent 30%, black 100%);
+  opacity: 0.25;
+  pointer-events: none;
+}
+.nav-container::after{
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 20%;
+  width: 60%;
+  height: 25px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+  filter: blur(18px);
+  opacity: 0.6;
+  pointer-events: none;
 }
 .logo a{
     font-size: 17px;
@@ -87,7 +113,6 @@ nav{
 }
 .bars-div a{
   color: var(--black-color);
-  transition: var(--transition2);
 }
 .bars p{
   font-size: 7px;
