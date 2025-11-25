@@ -860,6 +860,10 @@ footer{
   font-size: 13px;
   padding-right: 8px;
   }
+    .nverif h1{
+  font-size: 28px;
+  padding-right: 15px;
+  }
 }
 
 body.dark-mode {
