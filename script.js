@@ -128,15 +128,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   clickable.forEach(el => {
     el.addEventListener("click", function (e) {
-      e.stopPropagation(); // prevent closing immediately
-      this.classList.toggle("active"); // toggle ON/OFF by tapping itself
+      e.stopPropagation();
+      this.classList.toggle("active");
     });
   });
+});
   document.addEventListener("click", () => {
   document.querySelectorAll(".active").forEach(el => {
     el.classList.remove("active");
   });
-});
-
-
 });
