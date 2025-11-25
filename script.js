@@ -154,8 +154,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-  document.addEventListener("click", () => {
-  document.querySelectorAll(".active").forEach(el => {
-    el.classList.remove("active");
-  });
-});
