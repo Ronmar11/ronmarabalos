@@ -121,9 +121,22 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".menu li a, .img, .button1, .project-divider, .proj-logo-divider-size, .tech-stack, .contact-icon, .contact-email, .button").forEach(el => {
-    el.addEventListener("click", function () {
-      this.classList.toggle("active");
+
+  const clickable = document.querySelectorAll(
+    ".menu li a, .img, .button1, .project-divider, .proj-logo-divider-size, .tech-stack, .contact-icon, .contact-email, .button"
+  );
+
+  clickable.forEach(el => {
+    el.addEventListener("click", function (e) {
+      e.stopPropagation(); // prevent closing immediately
+      this.classList.toggle("active"); // toggle ON/OFF by tapping itself
     });
   });
+  document.addEventListener("click", () => {
+  document.querySelectorAll(".active").forEach(el => {
+    el.classList.remove("active");
+  });
+});
+
+
 });
