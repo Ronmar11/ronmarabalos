@@ -39,7 +39,7 @@ nav{
     margin-bottom: min(5rem, 8%); 
 }
 .nav-container {
-  height: 50px;
+  height: 55px;
   width: min(44rem, calc(100% - 2rem));
   position: fixed;
   display: flex;
