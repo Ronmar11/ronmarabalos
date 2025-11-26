@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener("DOMContentLoaded", () => {
 
   const clickable = document.querySelectorAll(
-    ".menu li a, .img, .button1, .project-divider, .proj-logo-divider-size, .tech-stack, .contact-icon, .contact-email, .button"
+    " .img, .button1, .project-divider, .proj-logo-divider-size, .tech-stack, .contact-icon, .contact-email, .button"
   );
 
   clickable.forEach(el => {

@@ -735,50 +735,6 @@ footer{
   width: 100%;
   background:    #ffb53f;
 }
-.menu li a.active {
-    opacity: .5;
-}
-
-.img.active {
-  background-image: url(Day.jpg);
-  scale: 102%;
-}
-
-.button1.active {
-  scale: 105%;
-}
-
-.button1.active:after {
- transform-origin: bottom center;
- transform: skewY(9.3deg) scaleY(2);
-}
-
-.button1.active span:last-child {
- transform: translateX(-50%) translateY(-50%);
- opacity: 1;
- transition: all 900ms cubic-bezier(0.48, 0, 0.12, 1);
-}
-
-.project-divider.active {
-  opacity: 1;
-  scale: 105%;
-  filter: brightness(1.1);
-  filter: var(--prime-color);
-}
-
-.tech-stack.active .stack {
-  opacity: 1;
-}
-
-.contact-icon.active,
-.contact-email.active {
-  color: #000;
-}
-
-.button.active .blob1 {
-  width: 100%;
-  background: #ffb53f;
-}
 
 @media (max-width: 1034px) {
   .Profile {
@@ -832,6 +788,46 @@ footer{
     grid-template-columns: 1fr;
     width: auto;
   }
+  .img.active {
+  background-image: url(Day.jpg);
+  scale: 102%;
+}
+
+.button1.active {
+  scale: 105%;
+}
+
+.button1.active:after {
+ transform-origin: bottom center;
+ transform: skewY(9.3deg) scaleY(2);
+}
+
+.button1.active span:last-child {
+ transform: translateX(-50%) translateY(-50%);
+ opacity: 1;
+ transition: all 900ms cubic-bezier(0.48, 0, 0.12, 1);
+}
+
+.project-divider.active {
+  opacity: 1;
+  scale: 105%;
+  filter: brightness(1.1);
+  filter: var(--prime-color);
+}
+
+.tech-stack.active .stack {
+  opacity: 1;
+}
+
+.contact-icon.active,
+.contact-email.active {
+  color: #000;
+}
+
+.button.active .blob1 {
+  width: 100%;
+  background: #ffb53f;
+}
 }
 @media (max-width: 500px) {
   nav {
