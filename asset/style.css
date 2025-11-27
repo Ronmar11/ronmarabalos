@@ -1172,6 +1172,11 @@ body.show-chatbot .chatbot-popup{
   .project4-img-div{
     grid-template-rows: repeat(4, 2rem);
   }
+
+  .chatbot-popup{
+    width: 300px;
+  }
+
 }
 @media (max-width: 450px) {
   .nav-container{
