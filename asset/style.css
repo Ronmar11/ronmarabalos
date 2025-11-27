@@ -1020,7 +1020,6 @@ body.show-chatbot .chatbot-popup{
     transition: 0.2s ease;
     pointer-events: none;
     opacity: 0.5;
-    margin-left: auto;
 }
 .send-logo:hover{
     background: #cac8c8;
@@ -1172,9 +1171,8 @@ body.show-chatbot .chatbot-popup{
   .project4-img-div{
     grid-template-rows: repeat(4, 2rem);
   }
-
   .chatbot-popup{
-    width: 300px;
+    width: 350px;
   }
 
 }
@@ -1235,8 +1233,14 @@ body.show-chatbot .chatbot-popup{
   padding-right: 8px;
   }
   .nverif h1{
-  font-size: 30px;
+  font-size: 27px;
   padding-right: 15px;
+  }
+  .chatbot-popup{
+    width: 320px;
+  }
+  .chat-footer{
+    justify-content: center;
   }
 }
 
