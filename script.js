@@ -160,7 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-const API_KEY =  "AIzaSyBV5kmiBLPviL9jjkBcgjsMqrrS_h5q-6A";
+const API_KEY =  "AIzaSyAA4GVvcq-ZbkgcSYPNVoDRQgLX1Q2b570";
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`;
 const userData = {
     message: null
