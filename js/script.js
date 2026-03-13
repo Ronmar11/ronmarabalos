@@ -18,7 +18,18 @@ const sendMessageButton = document.querySelector("#send-message");
 const chatForm = document.querySelector(".chat-form");
 const chatbotToggler = document.querySelector("#chatbot-toggler");
 
-
+// added for audio
+const content = document.querySelector(".content"),
+musicArtist = content.querySelector(".music-titles .artist"),
+Audio = document.querySelector(".main-song"),
+playBtn = content.querySelector(".play-pause"),
+playBtnIcon = content.querySelector(".play-pause span"),
+prevBtn = content.querySelector("#prev"),
+nextBtn = content.querySelector("#next"),
+progressBar = content.querySelector(".progress-bar"),
+progressDetails = content.querySelector(".progress-details"),
+repeatBtn = content.querySelector("#repeat"),
+Shuffle = content.querySelector("#shuffle");
 
 (function setupDarkToggle(){
 
@@ -160,8 +171,25 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-const API_KEY =  "AIzaSyDTBzalp1U0aSLSvzaHn3c0XxvUa8CoHhc";
-const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`;
+
+let API_KEY = "";
+let API_URL = "https://api.openai.com/v1/chat/completions";
+
+const loadConfig = async () => {
+    try {
+        const response = await fetch('/config.json');
+        if (response.ok) {
+            const config = await response.json();
+            API_KEY = config.OPENAI_API_KEY;
+        }
+    } catch (error) {
+        console.log("Config file not found, using fallback");
+        API_KEY = window.OPENAI_API_KEY || "";
+    }
+};
+
+loadConfig();
+
 const userData = {
     message: null
 }
@@ -232,24 +260,28 @@ User: ${userData.message}`;
 
     const requestOptions = {
       method: "POST",
-      headers: {"Content-Type": "application/json"},
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${API_KEY}`
+      },
       body: JSON.stringify({
-        contents: [{
-          parts: [{ text: prompt }]
-        }]
+        model: "gpt-4o-mini",
+        messages: chatHistory.length > 0 
+          ? [...chatHistory, { role: "user", content: userData.message }]
+          : [{ role: "user", content: userData.message }],
+        max_tokens: 1024
       })
     }
     try{
         const response = await fetch(API_URL, requestOptions);
         const data = await response.json();
-        if(!response.ok) throw new Error(data.error.message);
+        if(!response.ok) throw new Error(data.error?.message || "API Error");
 
-        const apiResponseText = data.candidates[0].content.parts[0].text.replace(/\*\*(.*?)\*\*/g, "$1").trim();
-        const cleaned = apiResponseText.replace(/\*/g, '');
-        messageElement.innerText = cleaned;
+        const apiResponseText = data.choices[0].message.content.trim();
+        messageElement.innerText = apiResponseText;
         
         chatHistory.push({ role: "user", content: userData.message });
-        chatHistory.push({ role: "assistant", content: cleaned });
+        chatHistory.push({ role: "assistant", content: apiResponseText });
     } catch(error){
         console.log(error);
         messageElement.innerText = error.message;
@@ -338,3 +370,132 @@ if (closeChatbot) {
         document.body.classList.remove("show-chatbot");
     });
 }
+
+// added for audio
+
+let index = 1;
+
+window.addEventListener("load", ()=>{
+  loadData(index);
+  playToggle.checked = false;
+  Audio.pause();
+});
+
+function loadData(indexValue){
+  musicArtist.innerHTML = songs[indexValue - 1].artist;
+  Audio.src = "audio/"+songs[indexValue - 1].audio+".mp3";
+}
+
+playBtn.addEventListener("click", ()=>{
+  const isMusicPaused = content.classList.contains("paused");
+  if(isMusicPaused){
+    pauseSong();
+  }
+  else{
+    playSong();
+  }
+});
+
+function playSong(){
+  content.classList.add("paused");
+  playBtnIcon.innerHTML = "pause";
+  Audio.play();
+}
+
+function pauseSong(){
+  content.classList.remove("paused");
+  playBtnIcon.innerHTML = "play_arrow";
+  Audio.pause();
+}
+
+nextBtn.addEventListener("click", ()=>{
+  nextSong();
+});
+
+prevBtn.addEventListener("click", ()=>{
+  prevSong();
+});
+
+function nextSong(){
+  index++;
+  if(index > songs.length){
+    index = 1;
+  }
+  else{
+    index = index;
+  }
+  loadData(index);
+  playSong();
+}
+
+function prevSong(){
+  index--;
+  if(index <= 0){
+    index = songs.length;
+  }
+  else{
+    index = index;
+  }
+  loadData(index);
+  playSong();
+}
+
+Audio.addEventListener("timeupdate", (e)=>{
+  const initialTime = e.target.currentTime; // Get current music time
+  const finalTime = e.target.duration; // Get music duration
+  let BarWidth = (initialTime / finalTime) * 100;
+  progressBar.style.width = BarWidth+"%";
+
+  progressDetails.addEventListener("click", (e)=>{
+    let progressValue = progressDetails.clientWidth; // Get width of Progress Bar
+    let clickedOffsetX = e.offsetX; // get offset x value
+    let MusicDuration = Audio.duration; // get total music duration
+
+    Audio.currentTime = (clickedOffsetX / progressValue) * MusicDuration;
+  });
+
+  //Timer Logic
+  Audio.addEventListener("loadeddata", ()=>{
+    let finalTimeData = content.querySelector(".final");
+
+    //Update finalDuration
+    let AudioDuration = Audio.duration;
+    let finalMinutes = Math.floor(AudioDuration / 60);
+    let finalSeconds = Math.floor(AudioDuration % 60);
+    if(finalSeconds < 10){
+      finalSeconds = "0"+finalSeconds;
+    }
+    finalTimeData.innerText = finalMinutes+":"+finalSeconds;
+  });
+
+  //Update Current Duration
+  let currentTimeData = content.querySelector(".current");
+  let CurrentTime = Audio.currentTime;
+  let currentMinutes = Math.floor(CurrentTime / 60);
+  let currentSeconds = Math.floor(CurrentTime % 60);
+  if(currentSeconds < 10){
+    currentSeconds = "0"+currentSeconds;
+  }
+  currentTimeData.innerText = currentMinutes+":"+currentSeconds;
+
+  //repeat button logic
+  repeatBtn.addEventListener("click", ()=>{
+    Audio.currentTime = 0;
+  });
+});
+
+//Shuffle Logic
+Shuffle.addEventListener("click", ()=>{
+  var randIndex = Math.floor(Math.random() * songs.length) + 1; // Select random betwn 1 and song array length
+  loadData(randIndex);
+  playSong();
+});
+
+Audio.addEventListener("ended", ()=>{
+  index++;
+  if(index > songs.length){
+    index = 1;
+  }
+  loadData(index);
+  playSong();
+});
