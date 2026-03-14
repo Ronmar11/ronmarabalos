@@ -8,6 +8,8 @@ const bms = document.getElementById('bms-link');
 const bmsyt = document.getElementById('bms-yt-link');
 const pra = document.getElementById('pra-link');
 const prayt = document.getElementById('pra-yt-link');
+const crud = document.getElementById('crud-link');
+const crudyt = document.getElementById('crud-yt-link');
 const linkedid = document.getElementById('linkedid-link');
 const github2 = document.getElementById('github-link2');
 const instagram = document.getElementById('instagram-link');
@@ -117,6 +119,22 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     if(prayt){
       prayt.addEventListener('click', function(){
+        const url = this.getAttribute('data-url');
+        if(url){
+          window.open(url);
+        }
+      });
+    }
+    if(crud){
+      crud.addEventListener('click', function(){
+        const url = this.getAttribute('data-url');
+        if(url){
+          window.open(url);
+        }
+      });
+    }
+    if(crudyt){
+      crudyt.addEventListener('click', function(){
         const url = this.getAttribute('data-url');
         if(url){
           window.open(url);

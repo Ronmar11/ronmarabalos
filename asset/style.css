@@ -194,10 +194,10 @@ input:checked + .slider:before {
   mask-image: radial-gradient(at top, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%);
 }
 .img{
-  background-image: url(Day.png);
+  background-image: url(eUCZ6xuBas.png);
   height: 30rem;
   width: 28rem;
-  background-size: contain;
+  background-size:cover;
   background-repeat: no-repeat;
   display: flex;
   transition: var(--transition2);
@@ -273,9 +273,9 @@ input:checked + .slider:before {
     gap: 20px; 
 }
 .about1 p{
-  padding-bottom: 30px;
+  padding-bottom: 15px;
   justify-content: space-between;
-  font-size: clamp(15px, 1.5vw, 3rem);
+  font-size: clamp(15px, 1.3vw, 3rem);
 }
 .title1{
   display: flex;
@@ -464,11 +464,12 @@ gap: 10px;
 
 .project-item{
   width: 100%;
-  width: 1000px;
+  width: 100%;
   margin: 0 auto;
   display: grid;
   gap: 10px;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 1fr;
   column-gap: 20px;
   row-gap: 15px;
   justify-content: center;
@@ -481,6 +482,10 @@ gap: 10px;
 }
 .project-item h3{
   font-size: clamp(1rem, 1.8vw, 3rem);
+  padding-bottom: 35px;
+}
+.h3-single{
+ 
 }
 .project-item h4{
   font-size: clamp(10px, 1vw, 3rem);
@@ -505,24 +510,24 @@ gap: 10px;
 }
 .proj1{
   grid-column: span 2;
-  grid-row: span 4;
+  grid-row: span 3;
 }
 .project-img-div{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 3.3rem);
+  grid-template-rows: repeat(3, 3.3rem);
   gap: 5px;
   margin-bottom: 10px;
 
 }
 .portfolio-img{
   grid-column: span 3;
-  grid-row: span 4;
+  grid-row: span 3;
   background-image: url(Porfolio.png);
 }
 .portfolio-img2{
   grid-column-start: 4; 
-  grid-row: span 4;
+  grid-row: span 3;
   background-image: url(Portfolio2.png);
 }
 .img-size{
@@ -535,43 +540,60 @@ gap: 10px;
 }
 .proj2{
   grid-column: span 2;
-  grid-row: span 4;
+  grid-row: span 3;
 }
 .proj2-img{
   grid-column: span 4;
-  grid-row: span 5;
+  grid-row: span 3;
   background-image: url(bms.png);
 }
 .proj3{
   grid-column: span 2;
-  grid-row: span 4;
+  grid-row: span 3;
 }
 .project3-img-div{
   display: grid;
   gap: 25px;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(5, 2.5rem);
+  grid-template-rows: repeat(3, 2.5rem);
 }
 .proj3-img{
   grid-column-start: 2; 
-  grid-row: span 5;
+  grid-row: span 4;
   background-image: url(mealmaster.jpg);
 }
 .proj4{
   grid-column: span 2;
-  grid-row: span 4;
+  grid-row: span 3;
 }
 .project4-img-div{
   display: grid;
   gap: 25px;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(5, 2.5rem);
+  grid-template-rows: repeat(3, 2.5rem);
   padding-bottom: 0.3rem;
 }
 .proj4-img{
   grid-column: span 4;
-  grid-row: span 5;
+  grid-row: span 3;
   background-image: url(pra.png);
+}
+/* five proj */
+.proj5{
+  grid-column: span 2;
+  grid-row: span 3;
+}
+.project5-img-div{
+  display: grid;
+  gap: 25px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 2.5rem);
+  padding-bottom: 0.3rem;
+}
+.proj5-img{
+  grid-column: span 4;
+  grid-row: span 3;
+  background-image: url(crud2.png);
 }
 .project-links{
   display: flex;
@@ -694,7 +716,7 @@ footer{
     opacity: .5;
 }
 .img:hover{
-  background-image: url(Day.jpg);
+  background-image: url(eUCZ6xuB.png);
   scale: 102%;
 }
 .button1:hover{
@@ -797,7 +819,7 @@ body.show-chatbot .chatbot-popup{
     height: 33px;
     width: 33px;
     padding: 6px;
-    background-image: url('Day.png');
+    background-image: url('eUCZ6xuBas.png');
     border-radius: 50%;
     flex-shrink: 0;
     background-size: cover;
@@ -864,7 +886,7 @@ body.show-chatbot .chatbot-popup{
     height: 15px;
     width: 15px;
     padding: 6px;
-    background-image: url('Day.png');
+    background-image: url('eUCZ6xuBas.png');
     border-radius: 50%;
     flex-shrink: 0;
     background-size: cover;
@@ -1255,14 +1277,14 @@ body.dark-mode .Profile{
   background: radial-gradient(50% 50% at 50% 50%,rgba(172, 172, 172, 0) 0%,var(--token-eb09dbbf-ef85-4b7f-81a5-44e9b062efb7, rgb(33, 33, 33)) 100%);
 }
 body.dark-mode .img{
-  background-image: url(Night.png);
+  background-image: url(eUCZ6xuBdrk.png);
 }
 body.dark-mode .img-div{
   border: 1px solid rgba(76, 76, 76, 0.18);
   mask-image: radial-gradient(at top, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%);
 }
 body.dark-mode .img:hover{
-  background-image: url(night-click.png);
+  background-image: url(eUCZ6xuBDARK.png);
   scale: 102%;
 }
 
@@ -1353,7 +1375,7 @@ body.dark-mode .logo-text{
     color: #f5f5f5;
 }
 body.dark-mode .chatbot-logo{
-    background-image: url('Night.png') !important;
+    background-image: url('eUCZ6xuBdrk.png') !important;
 }
 
 body.dark-mode .chat-body{
