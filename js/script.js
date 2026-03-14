@@ -190,23 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-let API_KEY = "";
-let API_URL = "https://api.openai.com/v1/chat/completions";
-
-const loadConfig = async () => {
-    try {
-        const response = await fetch('/config.json');
-        if (response.ok) {
-            const config = await response.json();
-            API_KEY = config.OPENAI_API_KEY;
-        }
-    } catch (error) {
-        console.log("Config file not found, using fallback");
-        API_KEY = window.OPENAI_API_KEY || "";
-    }
-};
-
-loadConfig();
+let API_URL = "http://localhost:3000/api/chat";
 
 const userData = {
     message: null
@@ -279,11 +263,10 @@ User: ${userData.message}`;
     const requestOptions = {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${API_KEY}`
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        model: "gpt-4o-mini",
+        model: "gpt-3.5-turbo",
         messages: chatHistory.length > 0 
           ? [...chatHistory, { role: "user", content: userData.message }]
           : [{ role: "user", content: userData.message }],
@@ -293,9 +276,7 @@ User: ${userData.message}`;
     try{
         const response = await fetch(API_URL, requestOptions);
         const data = await response.json();
-        if(!response.ok) throw new Error(data.error?.message || "API Error");
-
-        const apiResponseText = data.choices[0].message.content.trim();
+throw new Error(data.error?.message || "I’m currently unavailable right now.");       const apiResponseText = data.choices[0].message.content.trim();
         messageElement.innerText = apiResponseText;
         
         chatHistory.push({ role: "user", content: userData.message });
@@ -303,7 +284,6 @@ User: ${userData.message}`;
     } catch(error){
         console.log(error);
         messageElement.innerText = error.message;
-        messageElement.style.color = "#ff0000";
     } finally{
         incomingMessageDiv.classList.remove("thinking");
     }
