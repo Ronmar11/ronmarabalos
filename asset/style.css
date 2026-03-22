@@ -269,8 +269,9 @@ input:checked + .slider:before {
 }
 .abt{
     display: grid;
-    grid-template-columns: 1fr 0.1fr;
-    gap: 20px; 
+  grid-template-columns: minmax(0, 1.3fr) minmax(220px, 0.9fr);
+  gap: 20px;
+  align-items: center;
 }
 .about1 p{
   padding-bottom: 15px;
@@ -280,9 +281,12 @@ input:checked + .slider:before {
 .about2{
   background-image: url(about2.png);
   background-size: contain;
+  background-position: center;
   background-repeat: no-repeat;
-  height: 50rem;
-  width: 30rem;
+  width: min(100%, 28rem);
+  aspect-ratio: 3 / 5;
+  height: auto;
+  justify-self: center;
 }
 .title1{
   display: flex;
@@ -1161,8 +1165,12 @@ body.show-chatbot .chatbot-popup{
   }
   .abt {
     grid-template-columns: 1fr;
-    width: 600px;
+    width: min(100%, 680px);
     margin: 0 auto;
+    gap: 12px;
+  }
+  .about2 {
+    width: min(100%, 20rem);
   }
 }
 @media (max-width: 700px) {
@@ -1206,6 +1214,20 @@ body.show-chatbot .chatbot-popup{
   }
   .abt {
     width: auto;
+    gap: 10px;
+  }
+  .about {
+    margin-left: min(1.2rem, 4%);
+    margin-right: min(1.2rem, 4%);
+    padding-left: min(1rem, 4%);
+    padding-right: min(1rem, 4%);
+  }
+  .about1 {
+    padding-left: min(1rem, 4%);
+    padding-right: min(1rem, 4%);
+  }
+  .about1-div {
+    padding-left: 0;
   }
   .img.active {
   background-image: url(Day.jpg);
@@ -1290,6 +1312,9 @@ body.show-chatbot .chatbot-popup{
   }
   .chatbot-popup{
     width: 350px;
+  }
+  .about2 {
+    width: min(100%, 16rem);
   }
 }
 @media (max-width: 450px) {
