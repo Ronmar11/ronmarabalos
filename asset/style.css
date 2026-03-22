@@ -24,7 +24,8 @@ body{
 .home{
   width: 100%;
   min-height: 100vh;
-  overflow: hidden;
+  overflow-x: clip;
+  overflow-y: visible;
 }
 nav{
     width: 100%;
@@ -41,7 +42,6 @@ nav{
 .nav-container {
   height: 55px;
   width: min(44rem, calc(100% - 2rem));
-  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -269,20 +269,24 @@ input:checked + .slider:before {
 }
 .abt{
     display: grid;
-    grid-template-columns: 1fr 0.1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(14rem, 24rem);
+  align-items: center;
     gap: 20px; 
 }
 .about1 p{
   padding-bottom: 15px;
   justify-content: space-between;
-  font-size: clamp(12px, 1.3vw, 3rem);
+  font-size: clamp(15px, 1.3vw, 3rem);
 }
 .about2{
   background-image: url(about2.png);
   background-size: contain;
   background-repeat: no-repeat;
-  height: 50rem;
-  width: 30rem;
+  background-position: center;
+  width: min(100%, 30rem);
+  aspect-ratio: 5 / 3;
+  height: auto;
+  justify-self: center;
 }
 .title1{
   display: flex;
@@ -667,7 +671,7 @@ gap: 10px;
   box-shadow: 0 0 12px rgba(47, 178, 151, 0.55);
 }
 .proj-vids p{
-  width: 50rem;
+  width: min(50rem, 100%);
   font-size: clamp(1.3rem, 1.8vw, 3rem);
   font-weight: 600; 
   text-align: center;
@@ -873,14 +877,14 @@ footer{
 }
 
 .chatbot-popup{
-    width: 380px;
+  width: min(380px, calc(100vw - 24px));
     background: #fff;
     overflow: hidden;
     border-radius: 15px;
     position: fixed; 
     opacity: 0;
     pointer-events: none;
-    right: 35px;
+    right: 12px;
     bottom: 90px;
     transform: scale(0.2);
     transform-origin: bottom right;
@@ -939,7 +943,7 @@ body.show-chatbot .chatbot-popup{
 .active-status{
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 5px; 
 }
 .active-status p{
     margin: 0;
@@ -1131,7 +1135,7 @@ body.show-chatbot .chatbot-popup{
     opacity: 0.5;
 }
 .send-logo:hover{
-    background: #cac8c8;
+    background: #cac8c8; 
     outline: 1px solid #858383e5;
 }
 .chat-footer #send-message{
@@ -1164,10 +1168,12 @@ body.show-chatbot .chatbot-popup{
     width: 600px;
     margin: 0 auto;
   }
+  .about2{
+  width: min(100%, 28rem);
+}
 }
 @media (max-width: 700px) {
   nav {
-    justify-content: space-between;
     justify-content: center;
   }
   .nav-container{
@@ -1175,6 +1181,9 @@ body.show-chatbot .chatbot-popup{
   padding-right: 2.5rem;
   gap: 20px;
   }
+    .about2{
+  width: min(100%, 24rem);
+}
   .menu {
     display: none;
     flex-direction: column;
@@ -1206,10 +1215,6 @@ body.show-chatbot .chatbot-popup{
   }
   .abt {
     width: auto;
-  }
-  .about2{
-    height: 50rem;
-    width: 25rem;
   }
   .img.active {
   background-image: url(Day.jpg);
@@ -1254,7 +1259,6 @@ body.show-chatbot .chatbot-popup{
 }
 @media (max-width: 500px) {
   nav {
-    justify-content: space-between;
     justify-content: center;
   }
   .nav-container{
@@ -1277,9 +1281,8 @@ body.show-chatbot .chatbot-popup{
     font-weight: 600;
   }
   .about2{
-    height: 50rem;
-    width: 20rem;
-  }
+  width: min(100%, 20rem);
+}
   .bars {
     display: flex;
     cursor: pointer;
@@ -1297,7 +1300,8 @@ body.show-chatbot .chatbot-popup{
     grid-template-rows: repeat(4, 2rem);
   }
   .chatbot-popup{
-    width: 350px;
+    width: min(350px, calc(100vw - 20px));
+    right: 10px;
   }
 }
 @media (max-width: 450px) {
@@ -1311,6 +1315,9 @@ body.show-chatbot .chatbot-popup{
   height: 23rem;
   width: 20rem;
   }
+  .about2{
+  width: min(100%, 16rem);
+}
   .nverif h1{
   font-size: 30px;
   padding-right: 15px;
@@ -1352,6 +1359,9 @@ body.show-chatbot .chatbot-popup{
   .bars{
   gap: 25px;
   }
+  .about2{
+  width: min(100%, 14rem);
+}
   .logo-p a{
   font-size: 13px;
   padding-right: 8px;
@@ -1361,10 +1371,41 @@ body.show-chatbot .chatbot-popup{
   padding-right: 15px;
   }
   .chatbot-popup{
-    width: 320px;
+    width: min(320px, calc(100vw - 16px));
+    right: 8px;
   }
   .chat-footer{
     justify-content: center;
+  }
+}
+@media(max-width: 390px){
+  .about{
+    margin-left: 12px;
+    margin-right: 12px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 0 0 24px 24px;
+  }
+  .about1{
+    padding-top: 2.5rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  .about1-div{
+    padding-left: 0;
+  }
+  .about1 p{
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .title1{
+    gap: 8px;
+  }
+  .title1 h1{
+    margin-bottom: 1.5rem;
+  }
+  .about2{
+    width: min(100%, 18rem);
   }
 }
 
@@ -1539,271 +1580,4 @@ body.dark-mode #send-message{
 }
 body.dark-mode #send-message:hover{
     background: #5a5a5a;
-}
-
-/* Added */
-.content{
-  height: 25rem;
-  align-items: center;
-  align-self: center;
-  border-radius: 15px;
-  padding: 15px 15px;
-}
-
-.material-symbols-rounded{
-  cursor: pointer;
-}
-
-.music-image img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.image-wrapper{
-  display: flex;
-  justify-content: center;
-}
-
-.music-titles{
-  text-align: center;
-  margin: 5px;
-  color: #4d4d4d;
-}
-.music-titles .artist{
-  font-size: 17px;
-  opacity: 0.9;
-}
-
-.progress-details{
-  width: 100%;
-  height: 6px;
-  background-color: #ccc;
-  border-radius: 15px;
-}
-
-.progress-bar{
-  width: 0%;
-  height: inherit;
-  border-radius: inherit;
-  background-color: #0987f6;
-  cursor: pointer;
-  position: relative;
-}
-
-.progress-bar span{
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  background-color: #0987f6;
-  border-radius: inherit;
-  transform: translateY(-25%);
-  right: -5px;
-  opacity: 0;
-  transition: opacity 0.3s ease-out;
-}
-
-.progress-details:hover .progress-bar span{
-  opacity: 1;
-}
-
-.time{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 2px;
-  color: #4d4d4d;
-}
-
-.control-btn{
-  margin-top: 10px;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.control-btn span{
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #4d4d4d;
-}
-
-.control-btn span:active{
-  color: #999999;
-}
-
-.btn-wrapper {
-  --width: 80px;
-  --height: 60px;
-  --padding: 8px;
-  --border-radius: 24px;
-  --dot-size: 8px;
-  --btn-color: #000000;
-  --hue: 14deg;
-  --animation-duration: 1.2s;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--width);
-  height: var(--height);
-  border-radius: var(--border-radius);
-  background-color: #00000008;
-  box-shadow:
-    1px 1px 2px 0 #fffd,
-    2px 2px 2px #0001 inset,
-    2px 2px 4px #0001 inset,
-    2px 2px 8px #0001 inset;
-  perspective: 150px;
-  cursor: pointer;
-  user-select: none;
-  transition:
-    box-shadow 0.05s linear,
-    transform 0.05s linear;
-}
-
-.toggle {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  z-index: 5;
-  cursor: pointer;
-}
-
-.bton {
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  gap: 0.25em;
-  text-align: left;
-  padding: 0 var(--height) 0 calc(var(--padding) * 2);
-  width: calc(100% - 2 * var(--padding));
-  height: calc(100% - 2 * var(--padding));
-  border-radius: calc(var(--border-radius) - var(--padding));
-  border: none;
-  cursor: pointer;
-  background: linear-gradient(#fff2, #0001), var(--btn-color);
-  box-shadow:
-    1px 1px 2px -1px #fff inset,
-    0 2px 1px #00000010,
-    0 4px 2px #00000010,
-    0 8px 4px #00000010,
-    0 16px 8px #00000010,
-    0 32px 16px #00000010;
-  transition:
-    transform 0.15s cubic-bezier(0.25, 1.5, 0.5, 1.5),
-    box-shadow 0.15s ease,
-    filter 0.15s ease;
-  z-index: 2;
-}
-
-.btn-txt {
-  position: absolute;
-  font-family: "Montserrat", "Manrope", sans-serif;
-  font-weight: 500;
-  font-size: 16px;
-  color: rgba(255, 255, 255, 0.616);
-  background-image: linear-gradient(#000a, #555);
-  background-clip: text;
-  filter: drop-shadow(0 1px 0px #fff) drop-shadow(0 -1px 0px #0005);
-  transition: opacity 0.2s ease;
-}
-.btn-wrapper:active .bton {
-  box-shadow:
-    1px 1px 2px 0 #fff,
-    2px 2px 2px #0001 inset,
-    2px 2px 4px #0001 inset,
-    2px 2px 8px #0001 inset,
-    0 0 32px 2px hsla(var(--hue), 50%, 50%, 0.5) inset;
-}
-
-.playing {
-  display: flex;
-  position: relative;
-  justify-content: center;
-  gap: 1px;
-  width: 200px;
-  height: fit;
-}
-
-.greenline {
-  background-color: #1db954;
-  height: 200px;
-  width: 200px;
-  position: relative;
-  transform-origin: bottom;
-}
-
-.line-1 {
-  animation: infinite playing 1s ease-in-out;
-  animation-delay: 0.2s;
-  animation-play-state: paused;
-}
-
-.line-2 {
-  animation: infinite playing 1s ease-in-out;
-  animation-delay: 0.5s;
-  animation-play-state: paused;
-}
-
-.line-3 {
-  animation: infinite playing 1s ease-in-out;
-  animation-delay: 0.6s;
-  animation-play-state: paused;
-}
-
-.line-4 {
-  animation: infinite playing 1s ease-in-out;
-  animation-delay: 0s;
-  animation-play-state: paused;
-}
-
-.line-5 {
-  animation: infinite playing 1s ease-in-out;
-  animation-delay: 0.4s;
-  animation-play-state: paused;
-}
-
-.content:has(.toggle:checked) .line-1 {
-  animation-play-state: running;
-}
-
-.content:has(.toggle:checked) .line-2 {
-  animation-play-state: running;
-}
-
-.content:has(.toggle:checked) .line-3 {
-  animation-play-state: running;
-}
-
-.content:has(.toggle:checked) .line-4 {
-  animation-play-state: running;
-}
-
-.content:has(.toggle:checked) .line-5 {
-  animation-play-state: running;
-}
-
-@keyframes playing {
-  0% {
-    transform: scaleY(0.1);
-  }
-
-  33% {
-    transform: scaleY(0.6);
-  }
-
-  66% {
-    transform: scaleY(0.9);
-  }
-
-  100% {
-    transform: scaleY(0.1);
-  }
 }
