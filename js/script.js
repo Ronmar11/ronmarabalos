@@ -11,6 +11,15 @@ const prayt = document.getElementById('pra-yt-link');
 const crud = document.getElementById('crud-link');
 const crudyt = document.getElementById('crud-yt-link');
 const linkedid = document.getElementById('linkedid-link');
+const vids1 = document.getElementById('vids1');
+const vids2 = document.getElementById('vids2');
+const vids3 = document.getElementById('vids3');
+const vids4 = document.getElementById('vids4');
+const vids5 = document.getElementById('vids5');
+const vids6 = document.getElementById('vids6');
+const vids7 = document.getElementById('vids7');
+const vids8 = document.getElementById('vids8');
+const vids9 = document.getElementById('vids9');
 const github2 = document.getElementById('github-link2');
 const instagram = document.getElementById('instagram-link');
 const email = document.getElementById('email-link');
@@ -173,7 +182,79 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
     }
-});
+    if(vids1){
+      vids1.addEventListener('click', function(){
+        const url = this.getAttribute('data-url');
+        if(vids1){
+          window.open(url);
+        }
+      });
+    }
+    if(vids2){
+      vids2.addEventListener('click', function(){
+        const url = this.getAttribute('data-url');
+        if(vids2){
+          window.open(url);
+        }
+      });
+    }
+    if(vids3){
+      vids3.addEventListener('click', function(){
+        const url = this.getAttribute('data-url');
+        if(vids3){
+          window.open(url);
+        }
+      });
+    }
+    if(vids4){
+      vids4.addEventListener('click', function(){
+        const url = this.getAttribute('data-url');
+        if(vids4){
+          window.open(url);
+        }
+      });
+    }  
+    if(vids5){
+      vids5.addEventListener('click', function(){
+        const url = this.getAttribute('data-url');
+        if(vids5){
+          window.open(url);
+        }
+      });
+    }
+    if(vids6){
+      vids6.addEventListener('click', function(){
+        const url = this.getAttribute('data-url');
+        if(vids6){
+          window.open(url);
+        }
+      });
+    }
+    if(vids7){
+      vids7.addEventListener('click', function(){
+        const url = this.getAttribute('data-url');
+        if(vids7){
+          window.open(url);
+        }
+      });
+    }  
+    if(vids8){
+      vids8.addEventListener('click', function(){
+        const url = this.getAttribute('data-url');
+        if(vids8){
+          window.open(url);
+        }
+      });
+    }
+    if(vids9){
+      vids9.addEventListener('click', function(){
+        const url = this.getAttribute('data-url');
+        if(vids9){
+          window.open(url);
+        }
+      });
+    }    
+  });
 
 document.addEventListener("DOMContentLoaded", () => {
 

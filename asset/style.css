@@ -194,7 +194,7 @@ input:checked + .slider:before {
   mask-image: radial-gradient(at top, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%);
 }
 .img{
-  background-image: url(eUCZ6xuBas.png);
+  background-image: url(Day.png);
   height: 30rem;
   width: 28rem;
   background-size:cover;
@@ -277,6 +277,13 @@ input:checked + .slider:before {
   justify-content: space-between;
   font-size: clamp(15px, 1.3vw, 3rem);
 }
+.about2{
+  background-image: url(about2.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 50rem;
+  width: 30rem;
+}
 .title1{
   display: flex;
   justify-content: center;
@@ -297,7 +304,7 @@ input:checked + .slider:before {
   overflow: hidden;
   margin-left: min(5rem, 5%);
   margin-right: min(5rem, 5%);
-  margin-bottom: min(3rem, 5%);
+  margin-bottom: min(.5rem, 5%);
   padding-top: min(3rem, 5%);
   padding-bottom: min(2rem, 5%);
   padding-left: min(3rem, 1%);
@@ -351,7 +358,7 @@ gap: 10px;
 .stack{
   transition: var(--transition2);
 }
-.stach-quote, .project-quote, .contact-qoute{
+.stach-quote, .project-quote, .contact-qoute, .proj-vids{
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -445,13 +452,35 @@ gap: 10px;
  z-index: 50;
 }
 .project{
+  position: relative;
   margin-left: min(5rem, 5%);
   margin-right: min(5rem, 5%);
-  margin-bottom: min(5rem, 8%);
-  padding-top: min(3rem, 5%);
-  padding-bottom: min(2rem, 5%);
+  margin-bottom: min(1rem, 8%);
+  padding-top: min(5rem, 5%);
+  padding-bottom: min(5rem, 5%);
   padding-left: min(3rem, 1%);
   padding-right: min(3rem, 1%);
+  border: 1px solid transparent;
+  border-radius: 28px;
+  background: transparent;
+  transition: border-color var(--transition2);
+}
+.project:hover{
+  border-color: rgba(47, 178, 151, 0.35);
+  background: linear-gradient(180deg, rgba(47, 178, 151, 0.08) 0%, rgba(47, 178, 151, 0.03) 45%, rgba(47, 178, 151, 0.08) 100%);
+}
+.project::before{
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border: 1px solid rgba(47, 178, 151, 0.15);
+  border-radius: 20px;
+  opacity: 0;
+  transition: opacity var(--transition2);
+  pointer-events: none;
+}
+.project:hover::before{
+  opacity: 1;
 }
  .contact{
   margin-left: min(5rem, 5%);
@@ -464,15 +493,15 @@ gap: 10px;
 
 .project-item{
   width: 100%;
-  width: 100%;
   margin: 0 auto;
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   gap: 10px;
-  grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: 1fr;
   column-gap: 20px;
   row-gap: 15px;
   justify-content: center;
+  margin-left: min(50px, 8%);
+  margin-right: min(50px, 8%);
 }
 .project-item > div{
   border: 1px solid #e8e8e8;
@@ -484,9 +513,6 @@ gap: 10px;
   font-size: clamp(1rem, 1.8vw, 3rem);
   padding-bottom: 35px;
 }
-.h3-single{
- 
-}
 .project-item h4{
   font-size: clamp(10px, 1vw, 3rem);
 }
@@ -496,11 +522,12 @@ gap: 10px;
  padding-bottom: 20px;
 }
 .project-divider{
+  width: 26rem;
   padding-top: min(2rem , 10%);
   padding-bottom: min(2rem, 10%);
   padding-left: min(3rem, 0%);
   padding-right: min(3rem, 0%);
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
   box-shadow: 0 8px 32px 0 #0d2626;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -518,7 +545,6 @@ gap: 10px;
   grid-template-rows: repeat(3, 3.3rem);
   gap: 5px;
   margin-bottom: 10px;
-
 }
 .portfolio-img{
   grid-column: span 3;
@@ -618,6 +644,68 @@ gap: 10px;
 .proj-logo-divider-size h4{
   transition: all 0.3s;
 } 
+.video-project{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-left: min(50px, 8%);
+  margin-right: min(50px, 8%);
+}
+.proj-vids{
+  position: relative;
+}
+.proj-vids::before{
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -45px;
+  width: 4px;
+  height: 40px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(47, 178, 151, 0.1) 0%, rgba(47, 178, 151, 1) 50%, rgba(47, 178, 151, 0.1) 100%);
+  box-shadow: 0 0 12px rgba(47, 178, 151, 0.55);
+}
+.proj-vids p{
+  width: 50rem;
+  font-size: clamp(1.3rem, 1.8vw, 3rem);
+  font-weight: 600; 
+  text-align: center;
+}
+.vids{
+  height: 25rem;
+  width: 15rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition: 300ms;
+}
+.vids1{
+  background-image: url(vid1.png);
+}
+.vids2{
+  background-image: url(vid2.png);
+}
+.vids3{
+  background-image: url(vid3.png);
+}
+.vids4{
+  background-image: url(vid4.png);
+}
+.vids5{
+  background-image: url(vid5.png);
+}
+.vids6{
+  background-image: url(vid6.png);
+}
+.vids7{
+  background-image: url(vid7.png);
+}
+.vids8{
+  background-image: url(vid8.png);
+}
+.vids9{
+  background-image: url(vid9.png);
+}
 .contact-item1{
   padding-top: 20px;
 }
@@ -716,7 +804,7 @@ footer{
     opacity: .5;
 }
 .img:hover{
-  background-image: url(eUCZ6xuB.png);
+  background-image: url(day1.png);
   scale: 102%;
 }
 .button1:hover{
@@ -734,11 +822,15 @@ footer{
 }
 .project-divider:hover{
   opacity: 1;
-  scale: 105%;
   filter: brightness(1.1);
 }
 .proj-logo-divider-size:hover{
   color: black;
+}
+.vids:hover{
+  opacity: 1;
+  scale: 102%;
+  filter: brightness(1.1);
 }
 .tech-stack:hover{
   .stack{
@@ -746,11 +838,11 @@ footer{
 }
 }
 .contact-icon:hover , .contact-email:hover{
-  color: #000;
+  color: #00e93a;
 }
 .button:hover .blob1{
   width: 100%;
-  background:    #ffb53f;
+  background:    #00e93a;
 }
 
 .ai-svg{
@@ -1199,7 +1291,6 @@ body.show-chatbot .chatbot-popup{
   .chatbot-popup{
     width: 350px;
   }
-
 }
 @media (max-width: 450px) {
   .nav-container{
@@ -1277,14 +1368,14 @@ body.dark-mode .Profile{
   background: radial-gradient(50% 50% at 50% 50%,rgba(172, 172, 172, 0) 0%,var(--token-eb09dbbf-ef85-4b7f-81a5-44e9b062efb7, rgb(33, 33, 33)) 100%);
 }
 body.dark-mode .img{
-  background-image: url(eUCZ6xuBdrk.png);
+  background-image: url(Night1.png);
 }
 body.dark-mode .img-div{
   border: 1px solid rgba(76, 76, 76, 0.18);
   mask-image: radial-gradient(at top, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%);
 }
 body.dark-mode .img:hover{
-  background-image: url(eUCZ6xuBDARK.png);
+  background-image: url(Night.png);
   scale: 102%;
 }
 
@@ -1330,6 +1421,13 @@ body.dark-mode .title1 h1{
 }
 body.dark-mode .tech-stack{
     --pattern-color: rgba(1, 43, 19, 0.01  );
+}
+body.dark-mode .project:hover{
+  border-color: rgba(47, 178, 151, 0.45);
+  background: linear-gradient(180deg, rgba(47, 178, 151, 0.12) 0%, rgba(47, 178, 151, 0.05) 45%, rgba(47, 178, 151, 0.12) 100%);
+}
+body.dark-mode .project:hover::before{
+  border-color: rgba(47, 178, 151, 0.25);
 }
 body.dark-mode .portfolio-img{
   background-image: url(Portfolio-night.png);
