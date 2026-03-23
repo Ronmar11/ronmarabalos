@@ -1220,11 +1220,6 @@ body.show-chatbot .chatbot-popup{
   height: 14rem;
   width: 9rem;
 }
-  .img.active {
-  background-image: url(Day.jpg);
-  scale: 102%;
-}
-
 .button1.active {
   scale: 105%;
 }
