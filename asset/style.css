@@ -808,7 +808,7 @@ footer{
     opacity: .5;
 }
 .img:hover{
-  background-image: url(day1.png);
+  background-image: url(Day1.png);
   scale: 102%;
 }
 .button1:hover{
@@ -1414,6 +1414,7 @@ body.show-chatbot .chatbot-popup{
     font-size: 14px;
     line-height: 1.6;
   }
+
   .vids{
   height: 7rem;
   width: 4rem;
