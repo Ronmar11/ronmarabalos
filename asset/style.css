@@ -532,7 +532,7 @@ gap: 10px;
   padding-left: min(3rem, 0%);
   padding-right: min(3rem, 0%);
   background: rgba(255, 255, 255, 0.05);
-  box-shadow: 0 8px 32px 0 #0d2626;
+  box-shadow: 0 0px 8px 0 #0d2626;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border-radius: 60Q; 
@@ -827,6 +827,8 @@ footer{
 .project-divider:hover{
   opacity: 1;
   filter: brightness(1.1);
+  box-shadow: 0 0px 0px 0 #0d2626;
+  backdrop-filter: blur(0px);
 }
 .proj-logo-divider-size:hover{
   color: black;
