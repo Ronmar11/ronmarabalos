@@ -1,0 +1,375 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Everything Tailwind can express lives in the components as utility classes.
+  This file only keeps what utilities cannot reach: pseudo-elements, CSS masks,
+  layered radial gradients and the multi-step hover choreography of the tech
+  buttons. Each rule below is a 1:1 port of the original stylesheet.
+*/
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* The original relied on the browser default rather than Tailwind's 1.5 */
+    line-height: normal;
+  }
+
+  body {
+    @apply overflow-x-hidden bg-paper font-sans text-ink dark:bg-ink dark:text-[#f5f5f5];
+  }
+}
+
+@layer components {
+  /* ---- Navbar glass pill: inner highlight + soft top glare ---- */
+  .nav-glass::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50px;
+    backdrop-filter: blur(30px);
+    mask: radial-gradient(circle at 20% 20%, transparent 30%, black 100%);
+    opacity: 0.25;
+    pointer-events: none;
+  }
+  .nav-glass::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 20%;
+    width: 60%;
+    height: 25px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.45);
+    filter: blur(18px);
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  /* ---- Hero backdrop: radial glow clipped by two bottom-corner masks ---- */
+  .profile-backdrop {
+    background: radial-gradient(
+      50% 50% at 50% 50%,
+      rgba(172, 172, 172, 0) 0%,
+      rgb(179, 179, 179) 100%
+    );
+    -webkit-mask:
+      radial-gradient(5vw at bottom left, transparent 98%, black 100%),
+      radial-gradient(5vw at bottom right, transparent 98%, black 100%);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+  }
+  .dark .profile-backdrop {
+    background: radial-gradient(
+      50% 50% at 50% 50%,
+      rgba(172, 172, 172, 0) 0%,
+      rgb(33, 33, 33) 100%
+    );
+  }
+
+  /* Faint engineering grid behind the hero, faded out towards the edges */
+  .hero-grid {
+    position: relative;
+    isolation: isolate;
+  }
+  .hero-grid::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(47, 178, 151, 0.12) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(47, 178, 151, 0.12) 1px, transparent 1px);
+    background-size: 40px 40px;
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 25%, transparent 75%);
+    mask-image: radial-gradient(ellipse at center, #000 25%, transparent 75%);
+  }
+
+  /* Fades the bottom edge of the portrait into the page */
+  .portrait-mask {
+    mask-image: radial-gradient(at top, rgba(0, 0, 0, 1) 90%, rgba(0, 0, 0, 0) 100%);
+    -webkit-mask-image: radial-gradient(at top, rgba(0, 0, 0, 1) 90%, rgba(0, 0, 0, 0) 100%);
+  }
+
+  .about-backdrop {
+    background: radial-gradient(
+      50% 50% at 50% 50%,
+      rgba(172, 172, 172, 0) 0%,
+      rgb(179, 179, 179) 0%
+    );
+  }
+  .dark .about-backdrop {
+    background: radial-gradient(
+      50% 50% at 50% 50%,
+      rgba(8, 10, 8, 0) 0%,
+      rgb(33, 33, 33) 100%
+    );
+  }
+
+  /* ---- Tech stack: dotted grid behind the section, faded out radially ---- */
+  .grid-pattern::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    transform: rotate(180deg);
+    --pattern-color: rgba(121, 121, 121, 0.197);
+    background:
+      linear-gradient(var(--pattern-color) 1px, transparent 1px),
+      linear-gradient(to right, var(--pattern-color) 1px, transparent 1px);
+    background-size: 15px 15px, 15px 15px;
+    background-position: 50% 50%, 50% 50%;
+    -webkit-mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 1) 3%, rgba(0, 0, 0, 0) 40%);
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: cover;
+  }
+  .dark .grid-pattern::before {
+    --pattern-color: rgba(1, 43, 19, 0.01);
+  }
+
+  /* ---- Projects section: inner ring + tinted wash that fade in on hover ---- */
+  .project-ring::before {
+    content: '';
+    position: absolute;
+    inset: 14px;
+    border: 1px solid rgba(47, 178, 151, 0.15);
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 0.6s;
+    pointer-events: none;
+  }
+  .project-ring:hover::before {
+    opacity: 1;
+  }
+  .project-ring:hover {
+    border-color: rgba(47, 178, 151, 0.35);
+    background: linear-gradient(
+      180deg,
+      rgba(47, 178, 151, 0.08) 0%,
+      rgba(47, 178, 151, 0.03) 45%,
+      rgba(47, 178, 151, 0.08) 100%
+    );
+  }
+  .dark .project-ring:hover {
+    border-color: rgba(47, 178, 151, 0.45);
+    background: linear-gradient(
+      180deg,
+      rgba(47, 178, 151, 0.12) 0%,
+      rgba(47, 178, 151, 0.05) 45%,
+      rgba(47, 178, 151, 0.12) 100%
+    );
+  }
+  .dark .project-ring:hover::before {
+    border-color: rgba(47, 178, 151, 0.25);
+  }
+
+  /* Vertical accent line above the "video projects" blurb */
+  .vids-divider::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -45px;
+    width: 4px;
+    height: 40px;
+    border-radius: 999px;
+    background: linear-gradient(
+      180deg,
+      rgba(47, 178, 151, 0.1) 0%,
+      rgba(47, 178, 151, 1) 50%,
+      rgba(47, 178, 151, 0.1) 100%
+    );
+    box-shadow: 0 0 12px rgba(47, 178, 151, 0.55);
+  }
+
+  /*
+    Tech button: a white panel skews up from the bottom while the label swaps
+    for the experience text. Three coupled transitions, so it stays plain CSS.
+    `.is-active` mirrors :hover for touch devices (was `.active` originally).
+  */
+  .tech-button {
+    position: relative;
+    overflow: hidden;
+    transition: 0.6s;
+  }
+  .tech-button > span:first-of-type {
+    position: relative;
+    transition: color 600ms cubic-bezier(0.48, 0, 0.12, 1);
+    z-index: 10;
+  }
+  .tech-button > span:last-of-type {
+    color: rgb(0, 0, 0);
+    display: block;
+    position: absolute;
+    bottom: 0;
+    transition: all 500ms cubic-bezier(0.48, 0, 0.12, 1);
+    z-index: 100;
+    opacity: 0;
+    top: 50%;
+    left: 50%;
+    transform: translateY(225%) translateX(-50%);
+    height: 14px;
+    line-height: 13px;
+    font-size: 10px;
+  }
+  .dark .tech-button > span:last-of-type {
+    color: rgb(255, 255, 255);
+  }
+  .tech-button::after {
+    content: '';
+    position: absolute;
+    bottom: -50%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.78);
+    transform-origin: bottom center;
+    transition: transform 600ms cubic-bezier(0.48, 0, 0.12, 1);
+    transform: skewY(9.3deg) scaleY(0);
+    z-index: 50;
+  }
+  .dark .tech-button::after {
+    background-color: rgba(0, 0, 1, 0.78);
+  }
+  .tech-button:hover {
+    scale: 105%;
+  }
+  .tech-button:hover::after {
+    transform-origin: bottom center;
+    transform: skewY(9.3deg) scaleY(2);
+  }
+  .tech-button:hover > span:last-of-type {
+    transform: translateX(-50%) translateY(-50%);
+    opacity: 1;
+    transition: all 900ms cubic-bezier(0.48, 0, 0.12, 1);
+  }
+  /* Touch fallback: tapping stands in for :hover below the md breakpoint. */
+  @media (max-width: 700px) {
+    .tech-button.is-active {
+      scale: 105%;
+    }
+    .tech-button.is-active::after {
+      transform-origin: bottom center;
+      transform: skewY(9.3deg) scaleY(2);
+    }
+    .tech-button.is-active > span:last-of-type {
+      transform: translateX(-50%) translateY(-50%);
+      opacity: 1;
+      transition: all 900ms cubic-bezier(0.48, 0, 0.12, 1);
+    }
+  }
+
+  /* ---- Contact CTA: glowing blob that sweeps across on hover ---- */
+  .cta-button::after {
+    content: '';
+    position: absolute;
+    width: 65%;
+    height: 60%;
+    border-radius: 120px;
+    top: 0;
+    right: 0;
+    box-shadow: 0 0 20px #ffffff38;
+    z-index: -1;
+  }
+  .cta-blob {
+    position: absolute;
+    width: 70px;
+    height: 100%;
+    border-radius: 16px;
+    bottom: 0;
+    left: 0;
+    background: radial-gradient(circle 60px at 0% 100%, #ffb53f, #ffffff80, transparent);
+    box-shadow: -10px 10px 30px #0051ff2d;
+    transition: 0.6s;
+  }
+  .dark .cta-blob {
+    background: radial-gradient(circle 60px at 0% 100%, #3fe9ff, #ffffff80, transparent);
+  }
+  .cta-button:hover .cta-blob {
+    width: 100%;
+    background: #00e93a;
+  }
+  @media (max-width: 700px) {
+    .cta-button.is-active .cta-blob {
+      width: 100%;
+      background: #ffb53f;
+    }
+  }
+  .dark .cta-button:hover .cta-blob {
+    width: 100%;
+    background: #3fe9ff;
+  }
+  .cta-inner {
+    position: relative;
+    z-index: 3;
+    background: radial-gradient(circle 80px at 80% -50%, #777777, #0f1111);
+  }
+  .cta-inner::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 14px;
+    background: radial-gradient(circle 60px at 0% 100%, #00e1ff1a, #0000ff11, transparent);
+    position: absolute;
+  }
+
+  /* ---- Dark mode toggle knob (inset box-shadow draws the crescent) ---- */
+  .switch-slider::before {
+    position: absolute;
+    content: '';
+    height: 1.4em;
+    width: 1.4em;
+    border-radius: 50%;
+    left: 10%;
+    bottom: 15%;
+    box-shadow: inset 15px -4px 0px 15px #fff000;
+    background: #757e7e;
+    transition: 0.5s;
+  }
+  .switch input:checked + .switch-slider::before {
+    transform: translateX(100%);
+    box-shadow: inset 8px -4px 0px 0px #fff000;
+  }
+
+  /* ---- Chat bubble tails ---- */
+  .bubble-bot::before {
+    content: '';
+    position: absolute;
+    left: -8px;
+    top: 18px;
+    width: 10px;
+    height: 10px;
+    background: #e4e4e4;
+    transform: rotate(45deg);
+    border-bottom-left-radius: 4px;
+  }
+  .dark .bubble-bot::before {
+    background: #1e1e1e;
+    border-left: 1px solid #3a3a3a;
+    border-bottom: 1px solid #3a3a3a;
+  }
+  .bubble-user::before {
+    content: '';
+    position: absolute;
+    right: -7px;
+    top: 18px;
+    width: 10px;
+    height: 10px;
+    background: #cac8c8;
+    transform: rotate(45deg);
+    border-bottom-left-radius: 4px;
+  }
+  .dark .bubble-user::before {
+    background: #2c2c2c;
+    border-left: 1px solid #444;
+    border-bottom: 1px solid #444;
+  }
+}
