@@ -98,6 +98,10 @@ export default function CollectionEditor({ collection }) {
   const save = async (event) => {
     event.preventDefault();
     const found = validateRow(collection, editing.values);
+    const { toggle } = collection;
+    if (toggle && editing.values[toggle.field] && countOn(editing.id) >= toggle.max) {
+      found[toggle.field] = toggle.full;
+    }
     if (Object.keys(found).length) {
       setErrors(found);
       return;
@@ -125,6 +129,33 @@ export default function CollectionEditor({ collection }) {
       await load();
     } catch (error) {
       setStatus({ type: 'error', message: error.message || 'Could not save.' });
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  // How many rows have the toggle switched on, not counting `exceptId`.
+  const countOn = (exceptId) =>
+    collection.toggle ? rows.filter((r) => r[collection.toggle.field] && r.id !== exceptId).length : 0;
+
+  // One-click switch from the list (e.g. "Show on landing page").
+  const flip = async (row) => {
+    const { field, max, full } = collection.toggle;
+    const next = !row[field];
+    if (next && countOn(row.id) >= max) {
+      setStatus({ type: 'error', message: full });
+      return;
+    }
+    setBusy(true);
+    setStatus(null);
+    try {
+      const { data, error } = await supabase.from(collection.table).update({ [field]: next }).eq('id', row.id).select();
+      if (error) throw error;
+      ensureAffected(data);
+      clearContentCache();
+      setRows((current) => current.map((r) => (r.id === row.id ? { ...r, [field]: next } : r)));
+    } catch (error) {
+      setStatus({ type: 'error', message: error.message || 'Could not update.' });
     } finally {
       setBusy(false);
     }
@@ -227,6 +258,11 @@ export default function CollectionEditor({ collection }) {
       <div className="flex flex-wrap items-center justify-between gap-3">
         <p className="font-mono text-xs text-black/50 dark:text-white/50">
           {rows.length} {rows.length === 1 ? collection.itemName : `${collection.itemName}s`}
+          {collection.toggle && (
+            <span className="ml-2 text-prime">
+              · {countOn()} of {collection.toggle.max} on the landing page
+            </span>
+          )}
         </p>
         <Button variant="primary" onClick={openNew} disabled={busy}>
           + Add {collection.itemName}
@@ -292,6 +328,17 @@ export default function CollectionEditor({ collection }) {
                     >
                       ↓
                     </Button>
+                    {collection.toggle && (
+                      <Button
+                        size="sm"
+                        variant={row[collection.toggle.field] ? 'primary' : 'secondary'}
+                        onClick={() => flip(row)}
+                        disabled={busy}
+                        aria-pressed={Boolean(row[collection.toggle.field])}
+                      >
+                        {row[collection.toggle.field] ? collection.toggle.on : collection.toggle.off}
+                      </Button>
+                    )}
                     <Button size="sm" onClick={() => openEdit(row)} disabled={busy}>
                       Edit
                     </Button>

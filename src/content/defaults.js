@@ -90,6 +90,7 @@ export const DEFAULT_ROWS = {
   projects: [
     {
       title: 'Porfolio Website',
+      featured: true,
       description:
         'This website presents my projects and skills, giving a clear view of what I can do and what I continue to learn',
       file_name: 'portfolio.jsx',
@@ -107,6 +108,7 @@ export const DEFAULT_ROWS = {
     },
     {
       title: 'Buyer Monitoring System',
+      featured: true,
       description:
         'This was projected by OOP subject, it was developed using java & mysql database, also it has UI using javaswing.',
       file_name: 'BuyerMonitoring.java',
@@ -120,6 +122,7 @@ export const DEFAULT_ROWS = {
     },
     {
       title: 'Meal Master',
+      featured: true,
       description: 'It was developed using Java and Firebase as the online database in android studio.',
       file_name: 'MealMaster.apk',
       media: 'portrait',

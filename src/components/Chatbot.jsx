@@ -187,6 +187,7 @@ export default function Chatbot({ isDark }) {
 
         <div
           ref={bodyRef}
+          data-lenis-prevent // scroll the conversation, not the page behind it
           className="flex h-[380px] flex-col gap-5 overflow-y-auto px-[22px] pb-[90px] pt-[25px] dark:bg-[#0f0f0f] dark:text-[#e5e5e5]"
         >
           {messages.map((message) => (

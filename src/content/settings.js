@@ -44,6 +44,7 @@ export const SETTINGS_GROUPS = [
         type: 'textarea',
         value: "A showcase of open-source projects I've developed.",
       },
+      { key: 'videos_title', label: 'Video reels heading', type: 'text', value: 'Video edits' },
       {
         key: 'videos_caption',
         label: 'Video reels caption',

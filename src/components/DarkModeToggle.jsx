@@ -1,7 +1,7 @@
 /** Checkbox-driven day/night switch; the knob is drawn in index.css. */
 export default function DarkModeToggle({ isDark, onChange }) {
   return (
-    <label className="switch relative inline-block h-[2em] w-[3.5em] text-[12px]">
+    <label className="switch relative inline-block h-[2em] w-[3.5em] shrink-0 text-[12px]">
       <input
         type="checkbox"
         className="h-0 w-0 opacity-0"

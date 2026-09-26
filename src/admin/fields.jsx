@@ -7,6 +7,8 @@ export const LINK_TYPES = [
   { value: 'github', label: 'GitHub (source code)' },
   { value: 'youtube', label: 'YouTube (demo video)' },
   { value: 'demo', label: 'Live demo' },
+  { value: 'appstore', label: 'App Store' },
+  { value: 'playstore', label: 'Google Play' },
   { value: 'link', label: 'Other link' },
 ];
 
@@ -263,6 +265,35 @@ export function FormField({ field, value, onChange, error }) {
     'aria-invalid': Boolean(error) || undefined,
     'aria-required': field.required || undefined,
   };
+
+  // A checkbox reads best with its label beside it, so it skips FieldShell.
+  if (field.type === 'boolean') {
+    return (
+      <div className="space-y-1">
+        <label htmlFor={id} className="flex cursor-pointer items-center gap-2.5 text-sm font-semibold">
+          <input
+            id={id}
+            type="checkbox"
+            checked={Boolean(value)}
+            onChange={(e) => onChange(e.target.checked)}
+            aria-describedby={describedBy}
+            className="h-4 w-4 cursor-pointer accent-prime"
+          />
+          {field.label}
+        </label>
+        {field.help && !error && (
+          <p id={`${id}-help`} className="pl-[26px] text-xs text-black/50 dark:text-white/45">
+            {field.help}
+          </p>
+        )}
+        {error && (
+          <p id={`${id}-error`} role="alert" className="pl-[26px] text-xs font-medium text-red-600 dark:text-red-400">
+            {error}
+          </p>
+        )}
+      </div>
+    );
+  }
 
   let control;
   switch (field.type) {

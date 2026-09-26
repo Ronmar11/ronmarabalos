@@ -65,6 +65,12 @@ export default {
           '28%': { opacity: '0.4', transform: 'translateY(-4px)' },
           '44%': { opacity: '0.4', transform: 'translateY(-4px)' },
         },
+        // Slides a track holding two copies of a list by exactly one copy,
+        // so the loop is seamless.
+        marquee: {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-50%)' },
+        },
         blink: {
           '0%, 49%': { opacity: '1' },
           '50%, 100%': { opacity: '0' },
@@ -79,6 +85,7 @@ export default {
         dotPulse: 'dotPulse 1.8s ease-in-out infinite',
         wiggle: 'wiggle 2s ease-in-out infinite',
         blink: 'blink 1s step-end infinite',
+        marquee: 'marquee var(--marquee-duration, 40s) linear infinite',
       },
     },
   },

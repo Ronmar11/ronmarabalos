@@ -29,10 +29,11 @@ export function Reveal({ as = 'div', delay = 0, y = 24, className, children }) {
  * `amount` is how much of the container must be visible before it starts;
  * keep it low for tall grids so they don't wait until half-way down.
  */
-export function Stagger({ as = 'div', stagger = 0.08, amount = 0.1, className, children }) {
+export function Stagger({ as = 'div', stagger = 0.08, amount = 0.1, className, children, ...rest }) {
   const Component = m[as];
   return (
     <Component
+      {...rest}
       className={className}
       initial="hidden"
       whileInView="visible"

@@ -5,6 +5,8 @@ const linkIconClass = {
   github: 'ri-github-fill',
   youtube: 'fa-brands fa-youtube',
   demo: 'ri-external-link-line',
+  appstore: 'ri-apple-fill',
+  playstore: 'ri-google-play-fill',
   link: 'ri-link',
 };
 
@@ -76,9 +78,19 @@ function Preview({ project, isDark }) {
   );
 }
 
-export default function ProjectCard({ project, isDark }) {
+/**
+ * `solid`: opaque surface, for cards stacked on top of each other (the carousel).
+ * `interactive`: false takes the links out of the Tab order (cards at the back).
+ */
+export default function ProjectCard({ project, isDark, solid = false, interactive = true }) {
+  const surface = solid
+    ? 'bg-white dark:bg-[#13151b]'
+    : 'bg-white/[0.05] backdrop-blur-[8px] dark:bg-white/[0.03]';
+
   return (
-    <article className="group flex h-full flex-col gap-4 rounded-xl border border-neu bg-white/[0.05] p-4 shadow-card backdrop-blur-[8px] transition-all duration-300 hover:-translate-y-1 hover:border-prime/40 hover:shadow-card-hover dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-prime/40">
+    <article
+      className={`group flex h-full flex-col gap-4 rounded-xl border border-neu p-4 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-prime/40 hover:shadow-card-hover dark:border-white/10 dark:hover:border-prime/40 ${surface}`}
+    >
       <Preview project={project} isDark={isDark} />
 
       <div className="flex flex-1 flex-col gap-2">
@@ -111,6 +123,7 @@ export default function ProjectCard({ project, isDark }) {
             <a
               key={`${i}-${link.url}`}
               href={safeUrl(link.url)}
+              tabIndex={interactive ? undefined : -1}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 rounded-lg border border-black/10 px-3 py-1.5 font-mono text-[12px] font-semibold text-gray-500 transition-colors duration-300 hover:border-prime/40 hover:bg-prime/10 hover:text-black dark:border-white/10 dark:hover:text-white"

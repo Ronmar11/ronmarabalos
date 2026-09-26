@@ -112,6 +112,11 @@ create table if not exists public.projects (
   created_at  timestamptz not null default now()
 );
 
+-- Added later. ADD COLUMN IF NOT EXISTS keeps this file safe to re-run on a
+-- database created before it existed.
+-- Which projects appear in the landing-page carousel (the admin allows 3).
+alter table public.projects add column if not exists featured boolean not null default false;
+
 create table if not exists public.video_projects (
   id            uuid primary key default gen_random_uuid(),
   thumbnail_url text not null check (char_length(thumbnail_url) > 0),

@@ -37,6 +37,12 @@ export const COLLECTIONS = [
     description: 'The project cards.',
     fields: [
       { name: 'title', label: 'Title', type: 'text', required: true, maxLength: 120 },
+      {
+        name: 'featured',
+        label: 'Show on the landing page',
+        type: 'boolean',
+        help: 'Up to 3 projects appear in the landing-page carousel. If none are ticked, the first 3 are shown.',
+      },
       { name: 'description', label: 'Description', type: 'textarea', rows: 4 },
       {
         name: 'file_name',
@@ -64,6 +70,14 @@ export const COLLECTIONS = [
       subtitle: (row.tags ?? []).join(' · '),
       image: row.images?.[0]?.src,
     }),
+    // One-click switch in the list, capped so the carousel never gets a 4th card.
+    toggle: {
+      field: 'featured',
+      max: 3,
+      on: '★ On landing page',
+      off: '☆ Show on landing page',
+      full: 'Only 3 projects can be on the landing page — turn one off first.',
+    },
   },
   {
     id: 'about',
@@ -142,6 +156,7 @@ export function blankRow(collection) {
   const row = {};
   for (const field of collection.fields) {
     if (field.type === 'tags' || field.type === 'images' || field.type === 'links') row[field.name] = [];
+    else if (field.type === 'boolean') row[field.name] = false;
     else if (field.type === 'select') row[field.name] = field.options[0].value;
     else row[field.name] = '';
   }

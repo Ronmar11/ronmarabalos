@@ -57,6 +57,8 @@ export function buildContent(rows) {
         id: row.id,
         title: str(row.title),
         description: str(row.description),
+        // Missing (undefined) on a database that predates the column.
+        featured: row.featured === true,
         file: str(row.file_name),
         media,
         tags: (Array.isArray(row.tags) ? row.tags : []).map(str).filter(Boolean),
