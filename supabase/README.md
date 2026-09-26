@@ -55,11 +55,15 @@ username and password from step 3.
 Add the same two `VITE_…` variables in your host's environment settings, then
 redeploy.
 
-`/admin` is a client-side route, so your host must serve `index.html` for it:
+`/admin` and `/projects` are pages of the app, not files, so the host must
+serve `index.html` for them:
 
-- **Vercel:** add a `vercel.json` with
-  `{ "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }] }`
+- **Vercel:** already set up by `vercel.json` in the project root.
 - **Netlify:** add `public/_redirects` containing `/*  /index.html  200`
+
+On Vercel, add the two variables under **Project Settings → Environment
+Variables** (tick Production and Preview), then **redeploy** — Vite bakes them
+in at build time, so an existing deployment won't pick them up.
 
 ## How the security works
 
