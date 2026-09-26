@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { supabase } from '../lib/supabase.js';
 import { Button, FieldShell, StatusMessage, inputClass } from './ui.jsx';
 import TerminalWindow from '../components/TerminalWindow.jsx';
+import { sitePath } from '../lib/sitePath.js';
 
 // The same message for "no such user" and "wrong password", so the form
 // doesn't reveal which usernames exist.
@@ -84,7 +85,7 @@ export default function Login() {
             {busy ? 'Signing in…' : 'Sign in'}
           </Button>
 
-          <a href="/" className="block text-center font-mono text-xs text-black/50 hover:text-prime dark:text-white/50">
+          <a href={sitePath('/')} className="block text-center font-mono text-xs text-black/50 hover:text-prime dark:text-white/50">
             ← back to the site
           </a>
         </form>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { isSupabaseConfigured, supabase, supabaseConfigProblem } from '../lib/supabase.js';
 import { useDarkMode } from '../hooks/useDarkMode.js';
+import { sitePath } from '../lib/sitePath.js';
 import DarkModeToggle from '../components/DarkModeToggle.jsx';
 import { useAdminAuth } from './useAdminAuth.js';
 import { COLLECTIONS } from './collections.js';
@@ -137,7 +138,7 @@ function Dashboard({ user }) {
           </p>
           <div className="flex flex-wrap gap-2">
             <a
-              href="/"
+              href={sitePath('/')}
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-lg border border-black/15 px-3 py-1 font-mono text-xs font-semibold hover:border-prime/50 hover:text-prime dark:border-white/15"
@@ -164,7 +165,7 @@ function Dashboard({ user }) {
         )}
         <div className="mt-8 flex flex-wrap items-center gap-2 border-t border-black/10 pt-4 dark:border-white/10 lg:hidden">
           <span className="mr-auto truncate font-mono text-xs text-black/50 dark:text-white/50">{user.email}</span>
-          <a href="/" className="font-mono text-xs font-semibold hover:text-prime">
+          <a href={sitePath('/')} className="font-mono text-xs font-semibold hover:text-prime">
             View site
           </a>
           <Button size="sm" variant="ghost" onClick={() => supabase.auth.signOut()}>

@@ -6,6 +6,7 @@ import DarkModeToggle from '../components/DarkModeToggle.jsx';
 import Footer from '../components/Footer.jsx';
 import { Stagger, StaggerItem } from '../components/motion/Reveal.jsx';
 import { useContent } from '../content/ContentContext.jsx';
+import { sitePath } from '../lib/sitePath.js';
 
 function ProjectsList({ isDark, setIsDark }) {
   const { settings, projects } = useContent();
@@ -18,7 +19,7 @@ function ProjectsList({ isDark, setIsDark }) {
     <>
       <header className="mx-auto flex w-full max-w-[78rem] items-center justify-between px-5 pt-6 md:px-8">
         <a
-          href="/"
+          href={sitePath('/')}
           className="group inline-flex items-center gap-2 font-mono text-sm text-black/60 transition-colors hover:text-prime dark:text-white/60"
         >
           <span aria-hidden="true" className="transition-transform duration-300 group-hover:-translate-x-1">

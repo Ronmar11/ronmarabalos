@@ -5,6 +5,7 @@ import GitHubContributions from './GitHubContributions.jsx';
 import ProjectDeck from './ProjectDeck.jsx';
 import { useContent } from '../content/ContentContext.jsx';
 import { Reveal } from './motion/Reveal.jsx';
+import { sitePath } from '../lib/sitePath.js';
 
 const LANDING_LIMIT = 3;
 
@@ -30,7 +31,7 @@ export default function Projects({ isDark }) {
 
             <div className="mt-6 flex justify-center">
               <a
-                href="/projects"
+                href={sitePath('/projects')}
                 className="group font-mono text-xs uppercase tracking-[0.18em] text-black/50 transition-colors hover:text-prime dark:text-white/50 dark:hover:text-prime"
               >
                 View all projects{' '}

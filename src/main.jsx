@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
+import { currentRoute } from './lib/sitePath.js';
 import './index.css';
 
 // Three pages, so a path check is all the routing needed. The admin and the
@@ -8,7 +9,7 @@ import './index.css';
 const AdminApp = lazy(() => import('./admin/AdminApp.jsx'));
 const AllProjects = lazy(() => import('./pages/AllProjects.jsx'));
 
-const path = window.location.pathname.replace(/\/+$/, '');
+const path = currentRoute();
 const isAdmin = path === '/admin' || path.startsWith('/admin/');
 const isProjects = path === '/projects';
 
