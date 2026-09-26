@@ -1,6 +1,6 @@
-// Same-origin by default: the Vite dev proxy forwards /api to the chat server,
-// and a co-deployed API needs no config either. Override with VITE_CHAT_API_URL
-// only when the API lives on a different host.
+// Same-origin: `npm run dev` answers /api/chat itself (see vite.config.js) and
+// on Vercel api/chat.js does. Override with VITE_CHAT_API_URL only when the
+// chat API lives on a different host.
 export const CHAT_API_URL = import.meta.env.VITE_CHAT_API_URL || '/api/chat';
 
 export const GREETING =
