@@ -14,7 +14,8 @@ export const OFFLINE_REPLY =
 const cannedResponses = [
   {
     match: ['girlfriend', 'may jowa', 'may girlfriend'],
-    reply: 'wala pa e, pag may nanligaw na siguro sakin, di jk lng. Focus muna sa aral hehe',
+    // Must agree with the "Love" answer in server/persona.js.
+    reply: 'Meron na — si Love, my special someone. 😊',
   },
 ];
 

@@ -9,7 +9,13 @@ import { SYSTEM_PROMPT } from './persona.js';
 // Browsers only ever send the conversation; the server decides the model and limits.
 const MAX_TURNS = 12; // history entries kept, newest last
 const MAX_CHARS = 2000; // per message
-const REQUEST_TIMEOUT_MS = 30_000;
+const REQUEST_TIMEOUT_MS = 30_000; // for the whole answer, retries included
+// Gemini answers 503 "high demand" (or 500) during short load spikes; waiting a
+// moment and asking again usually works, so do that before giving up.
+const RETRY_DELAYS_MS = [1000, 2500];
+const TRANSIENT = new Set([500, 503]);
+
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 // A "-latest" alias follows Google's newest Flash model, so the bot keeps
 // working when older model versions are retired. Pin one with GEMINI_MODEL.
@@ -56,26 +62,35 @@ export async function answerChat(rawMessages, { apiKey, model = DEFAULT_MODEL } 
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
 
-  try {
-    const upstream = await fetch(`${API_BASE}/models/${encodeURIComponent(model)}:generateContent`, {
-      method: 'POST',
-      signal: controller.signal,
-      headers: {
-        'Content-Type': 'application/json',
-        // A header, not ?key= in the URL, so the key never lands in request logs.
-        'x-goog-api-key': apiKey,
+  const request = {
+    method: 'POST',
+    signal: controller.signal,
+    headers: {
+      'Content-Type': 'application/json',
+      // A header, not ?key= in the URL, so the key never lands in request logs.
+      'x-goog-api-key': apiKey,
+    },
+    body: JSON.stringify({
+      systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
+      contents: toGeminiContents(messages),
+      generationConfig: {
+        temperature: 0.7,
+        // Roomy on purpose: newer Gemini models spend part of this budget on
+        // internal "thinking" before answering. The persona keeps replies short.
+        maxOutputTokens: 2048,
       },
-      body: JSON.stringify({
-        systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
-        contents: toGeminiContents(messages),
-        generationConfig: {
-          temperature: 0.7,
-          // Roomy on purpose: newer Gemini models spend part of this budget on
-          // internal "thinking" before answering. The persona keeps replies short.
-          maxOutputTokens: 2048,
-        },
-      }),
-    });
+    }),
+  };
+  const url = `${API_BASE}/models/${encodeURIComponent(model)}:generateContent`;
+
+  try {
+    let upstream = await fetch(url, request);
+    for (const delay of RETRY_DELAYS_MS) {
+      if (!TRANSIENT.has(upstream.status)) break;
+      console.warn(`Gemini busy (${upstream.status}); retrying in ${delay}ms`);
+      await sleep(delay);
+      upstream = await fetch(url, request);
+    }
 
     const data = await upstream.json().catch(() => null);
 
@@ -98,6 +113,8 @@ export async function answerChat(rawMessages, { apiKey, model = DEFAULT_MODEL } 
         console.error('  -> rate limit or free-tier quota reached.');
         return fail(502, BUSY);
       }
+      // Still overloaded after the retries: a busy message, not "broken".
+      if (TRANSIENT.has(upstream.status)) return fail(502, BUSY);
       return fail(502, UNREACHABLE);
     }
 
