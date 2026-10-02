@@ -67,7 +67,7 @@ export const SETTINGS_GROUPS = [
         key: 'github_username',
         label: 'GitHub username (leave empty to hide the contribution graph)',
         type: 'text',
-        value: 'Ronmar11',
+        value: 'RonmarAbalos',
       },
     ],
   },

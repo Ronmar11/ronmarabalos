@@ -104,7 +104,7 @@ export const DEFAULT_ROWS = {
           alt: 'Portfolio website projects section',
         },
       ],
-      links: [{ type: 'github', label: 'Source Code', url: 'https://github.com/Ronmar11/ronmarabalos' }],
+      links: [{ type: 'github', label: 'Source Code', url: 'https://github.com/ronmarabalos/ronmarabalos' }],
     },
     {
       title: 'Buyer Monitoring System',
@@ -116,7 +116,7 @@ export const DEFAULT_ROWS = {
       tags: ['Java', 'MySQL', 'Swing'],
       images: [{ src: '/media/bms.png', alt: 'Buyer Monitoring System desktop interface' }],
       links: [
-        { type: 'github', label: 'Source Code', url: 'https://github.com/Ronmar11/Buyer-Monitoring-System' },
+        { type: 'github', label: 'Source Code', url: 'https://github.com/ronmarabalos/Buyer-Monitoring-System' },
         { type: 'youtube', label: 'Project Demo', url: 'https://youtu.be/QToake72wAk?si=Pj8pAlkNURbH8QiZ' },
       ],
     },
@@ -128,7 +128,7 @@ export const DEFAULT_ROWS = {
       media: 'portrait',
       tags: ['Java', 'Firebase', 'Android'],
       images: [{ src: '/media/mealmaster.jpg', alt: 'Meal Master Android app screen' }],
-      links: [{ type: 'github', label: 'Source Code', url: 'https://github.com/Ronmar11/Meal_Master' }],
+      links: [{ type: 'github', label: 'Source Code', url: 'https://github.com/ronmarabalos/Meal_Master' }],
     },
     {
       title: 'Page Replacement Algorithm',
@@ -138,7 +138,7 @@ export const DEFAULT_ROWS = {
       tags: ['Java', 'Operating Systems'],
       images: [{ src: '/media/pra.png', alt: 'Page Replacement Algorithm program output' }],
       links: [
-        { type: 'github', label: 'Source Code', url: 'https://github.com/Ronmar11/OS-Project' },
+        { type: 'github', label: 'Source Code', url: 'https://github.com/ronmarabalos/OS-Project' },
         { type: 'youtube', label: 'Project Demo', url: 'https://youtu.be/AGk8RKtxDz0?si=jzidauNYOJh-mg7s' },
       ],
     },
@@ -150,7 +150,7 @@ export const DEFAULT_ROWS = {
       tags: ['PHP', 'MySQL', 'phpMyAdmin'],
       images: [{ src: '/media/crud2.png', alt: 'CRUD system management web page' }],
       links: [
-        { type: 'github', label: 'Source Code', url: 'https://github.com/Ronmar11/CRUD-website-with-phpadmin.git' },
+        { type: 'github', label: 'Source Code', url: 'https://github.com/ronmarabalos/CRUD-website-with-phpadmin.git' },
         { type: 'youtube', label: 'Project Demo', url: 'https://youtu.be/XHw33qzDVyM' },
       ],
     },
@@ -179,7 +179,7 @@ export const DEFAULT_ROWS = {
       icon_class: 'ri-facebook-fill',
       url: 'https://www.facebook.com/ronmar.abalos/',
     },
-    { placement: 'hero', label: 'GitHub profile', icon_class: 'ri-github-fill', url: 'https://github.com/Ronmar11' },
+    { placement: 'hero', label: 'GitHub profile', icon_class: 'ri-github-fill', url: 'https://github.com/ronmarabalos' },
     {
       placement: 'contact',
       label: 'LinkedIn profile',
@@ -192,7 +192,7 @@ export const DEFAULT_ROWS = {
       icon_class: 'ri-instagram-line',
       url: 'https://www.instagram.com/zekiii.ee',
     },
-    { placement: 'contact', label: 'GitHub profile', icon_class: 'ri-github-fill', url: 'https://github.com/Ronmar11' },
+    { placement: 'contact', label: 'GitHub profile', icon_class: 'ri-github-fill', url: 'https://github.com/ronmarabalos' },
   ],
 };
 
